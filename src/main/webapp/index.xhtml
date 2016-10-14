@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/include/template.xhtml">
+	
+	<ui:define name="titulo">
+		<title>Login</title>
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form>
+			<h1>Bem-vindo!</h1>
+			
+			<h:messages />
+			<fieldset>
+				<p>Grupo:</p>
+				<p>
+					<h:inputText value="#{grupoMB.grupo.nome}" 
+						required="true" requiredMessage="Nome Obrigatorio" />
+				</p>
+				
+				<p><h:commandButton action="#{grupoMB.cadastrar}" 
+					value="Cadastrar" /></p>
+			</fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>

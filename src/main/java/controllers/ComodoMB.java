@@ -7,17 +7,18 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
+
 import dao.ComodoDAO;
-import dominio.residencia.Comodo;
+import dominio.Comodo;
 
 @ManagedBean
 @SessionScoped
 public class ComodoMB {
 	
-private Comodo comodo;
+	private Comodo comodo;
 	
 	@Inject
-	private ComodoDAO ComodoDAO;
+	private ComodoDAO comodoDAO;
 	
 	private List<Comodo> listaComodos;
 	
@@ -36,7 +37,7 @@ private Comodo comodo;
 	}
 	
 	public List<Comodo> getListaComodo(){
-		setListaComodos(ComodoDAO.listar());
+		setListaComodos(comodoDAO.listar());
 		return listaComodos;
 	}
 
@@ -45,12 +46,12 @@ private Comodo comodo;
 	}
 	
 	public String cadastrar() {
-		Comodo c = ComodoDAO.buscarComodoNome(comodo.getNome());
+		Comodo c = comodoDAO.buscarComodoNome(comodo.getNome());
 		if (c == null){
-			ComodoDAO.salvar(c);
+			comodoDAO.salvar(comodo);
 		}
 		else {
-			ComodoDAO.atualizar(c);
+			comodoDAO.atualizar(comodo);
 		}
 		return "urlPagina";
 	}

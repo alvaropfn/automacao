@@ -8,7 +8,7 @@ import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import dao.PredioDAO;
-import dominio.residencia.*;
+import dominio.Predio;
 
 @ManagedBean
 @SessionScoped
@@ -47,10 +47,10 @@ public class PredioMB {
 	public String cadastrar() {
 		Predio p = predioDAO.buscarPredioNome(predio.getNome());
 		if (p == null){
-			predioDAO.salvar(p);
+			predioDAO.salvar(predio);
 		}
 		else {
-			predioDAO.atualizar(p);
+			predioDAO.atualizar(predio);
 		}
 		return "urlPagina";
 	}

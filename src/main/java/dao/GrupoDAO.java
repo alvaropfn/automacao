@@ -8,16 +8,18 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import dominio.seguranca.*;;
+import dominio.Grupo;
+
 
 @Stateless
 public class GrupoDAO {
-
 	@PersistenceContext
 	private EntityManager em;
 	
 	public void salvar(Grupo g) {
+		//System.out.println("Salvando G");
 		em.persist(g);
+		//System.out.println("G salvo");
 	}
 	
 	public void atualizar(Grupo g) {
@@ -31,13 +33,13 @@ public class GrupoDAO {
 	
 	@SuppressWarnings("unchecked")
 	public List<Grupo> listar() {
-		String qs = "select p from Grupo g";
+		String qs = "select g from Grupo g";
 		Query q = em.createQuery(qs);
 		return (List<Grupo>) q.getResultList();
 	}
 	
 	public Grupo buscarGrupoNome(String nome) {
-		String qs = "select p from Grupo g where p.nome = :nome";
+		String qs = "select g from Grupo g where g.nome = :nome";
 		Query q = em.createQuery(qs);
 		q.setParameter("nome", nome);
 		try {

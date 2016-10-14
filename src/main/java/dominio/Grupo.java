@@ -13,21 +13,26 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Grupos")
 public class Grupo {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	private long id;
 	
 	@Column(nullable=false)
 	private String nome;
 	
-	@ManyToMany(mappedBy="Grupos")
+	@ManyToMany(mappedBy="grupos")
 	private List<Usuario> usuarios;
 	
 	public Grupo() {
 		
 	}
+	
+	public Grupo(String nome){
+		this.nome = nome;
+	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
@@ -42,16 +47,4 @@ public class Grupo {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public List<Usuario> getUsuarios() {
-		return usuarios;
-	}
-
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
-	}
-	
-	
-	
-	
 }

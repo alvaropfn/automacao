@@ -8,7 +8,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import dominio.residencia.Comodo;
+import dominio.Comodo;
 
 @Stateless
 public class ComodoDAO {

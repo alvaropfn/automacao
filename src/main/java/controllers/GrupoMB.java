@@ -8,7 +8,7 @@ import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import dao.GrupoDAO;
-import dominio.seguranca.*;
+import dominio.Grupo;
 
 @ManagedBean
 @SessionScoped
@@ -17,7 +17,7 @@ public class GrupoMB {
 	private Grupo grupo;
 	
 	@Inject
-	private GrupoDAO GrupoDAO;
+	private GrupoDAO grupoDAO;
 	
 	private List<Grupo> listaGrupos;
 	
@@ -31,12 +31,12 @@ public class GrupoMB {
 		return grupo;
 	}
 	
-	public void setGrupo(Grupo comodo){
-		this.grupo = comodo;
+	public void setGrupo(Grupo grupo){
+		this.grupo = grupo;
 	}
 	
 	public List<Grupo> getListaGrupo(){
-		setListaGrupos(GrupoDAO.listar());
+		setListaGrupos(grupoDAO.listar());
 		return listaGrupos;
 	}
 
@@ -44,15 +44,21 @@ public class GrupoMB {
 		this.listaGrupos = listaGrupos;
 	}
 	
-	public String cadastrar() {
-		Grupo c = GrupoDAO.buscarGrupoNome(grupo.getNome());
-		if (c == null){
-			GrupoDAO.salvar(c);
+	public void cadastrar() {
+		
+		Grupo g = grupoDAO.buscarGrupoNome(grupo.getNome());
+		
+		if (g == null){
+			System.out.println("g é nulo");
+			grupoDAO.salvar(grupo);
+			System.out.println("g deveria ser salvo");
 		}
 		else {
-			GrupoDAO.atualizar(c);
+			//System.out.println("g não é nulo");
+			grupoDAO.atualizar(grupo);
 		}
-		return "urlPagina";
+		grupo = new Grupo();
+		//return "urlPagina";
 	}
 
 }
