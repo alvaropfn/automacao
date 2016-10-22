@@ -13,7 +13,7 @@ public class Dispositivo {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	private int idDispositivo;
 	
 	private String nome;
 
@@ -21,11 +21,11 @@ public class Dispositivo {
 	private Comodo comodo;
 	
 	public int getId() {
-		return id;
+		return idDispositivo;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.idDispositivo = id;
 	}
 
 	public String getNome() {
