@@ -7,14 +7,16 @@
 
 <ui:composition>
 	<h:head>
-		<ui:insert name="titulo">Título</ui:insert>
-	
-		<link href="#{request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet"></link>
-		<link href="#{request.contextPath}/resources/css/sb-admin.css" rel="stylesheet"></link>
-		<link href="#{request.contextPath}/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet"
-			type="text/css"> </link>
+
+		<link href="#{request.contextPath}/resources/css/bootstrap.min.css"
+			rel="stylesheet"></link>
+		<link href="#{request.contextPath}/resources/css/sb-admin.css"
+			rel="stylesheet"></link>
+		<link
+			href="#{request.contextPath}/resources/font-awesome/css/font-awesome.min.css"
+			rel="stylesheet" type="text/css"></link>
 	</h:head>
-	
+
 	<h:body>
 		<div id="wrapper">
 
@@ -119,31 +121,68 @@
 				</ul>
 				<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 				<div class="collapse navbar-collapse navbar-ex1-collapse">
-					<ul class="nav navbar-nav side-nav">
-						<li><a href="index.html"><i class="fa fa-fw fa-dashboard"></i>
-								Dashboard</a></li>
-						<li><a href="charts.html"><i
-								class="fa fa-fw fa-bar-chart-o"></i> Charts</a></li>
-						<li><a href="tables.html"><i class="fa fa-fw fa-table"></i>
-								Tables</a></li>
-						<li><a href="forms.html"><i class="fa fa-fw fa-edit"></i>
-								Forms</a></li>
-						<li><a href="bootstrap-elements.html"><i
-								class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a></li>
-						<li><a href="bootstrap-grid.html"><i
-								class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a></li>
-						<li><a href="javascript:;" data-toggle="collapse"
-							data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>
-								Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-							<ul id="demo" class="collapse">
-								<li><a href="#">Dropdown Item</a></li>
-								<li><a href="#">Dropdown Item</a></li>
-							</ul></li>
-						<li class="active"><a href="blank-page.html"><i
-								class="fa fa-fw fa-file"></i> Blank Page</a></li>
-						<li><a href="index-rtl.html"><i
-								class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a></li>
-					</ul>
+
+					<h:form>
+						<ul class="nav navbar-nav side-nav">
+							<li><a href="index-rtl.html"><i
+									class="fa fa-fw fa-dashboard"></i> Inicio</a></li>
+							<li><a href="javascript:;" data-toggle="collapse"
+								data-target="#grupoDown"><i class="fa fa-users"
+									aria-hidden="true"></i> Grupo <i class="fa fa-fw fa-caret-down"></i></a>
+								<ul id="grupoDown" class="collapse">
+									<li><h:commandLink action="#{grupoMB.abrirCadastro()}"
+											value="Cadastrar" /></li>
+									<li><h:commandLink action="#{grupoMB.abrirListagem()}"
+											value="Listar/Alterar" /></li>
+								</ul></li>
+							<li><a href="javascript:;" data-toggle="collapse"
+								data-target="#usuarioDown"><i class="fa fa-user"></i>
+									Usuário <i class="fa fa-fw fa-caret-down"></i></a>
+								<ul id="usuarioDown" class="collapse">
+									<li><h:commandLink action="#{usuarioMB.abrirCadastro()}"
+											value="Cadastrar" /></li>
+									<li><h:commandLink action="#{usuarioMB.abrirListagem()}"
+											value="Listar/Alterar" /></li>
+								</ul></li>
+							<li><a href="javascript:;" data-toggle="collapse"
+								data-target="#predioDown"><i class="fa fa-user"></i>
+									Predio <i class="fa fa-fw fa-caret-down"></i></a>
+								<ul id="predioDown" class="collapse">
+									<li><h:commandLink action="#{predioMB.abrirCadastro()}"
+											value="Cadastrar" /></li>
+									<li><h:commandLink action="#{predioMB.abrirListagem()}"
+											value="Listar/Alterar" /></li>
+								</ul></li>
+								<li><a href="javascript:;" data-toggle="collapse"
+								data-target="#comodoDown"><i class="fa fa-user"></i>
+									Comodo <i class="fa fa-fw fa-caret-down"></i></a>
+								<ul id="comodoDown" class="collapse">
+									<li><h:commandLink action="#{comodoMB.abrirCadastro()}"
+											value="Cadastrar" /></li>
+									<li><h:commandLink action="#{comodoMB.abrirListagem()}"
+											value="Listar/Alterar" /></li>
+								</ul></li>
+								<li><a href="javascript:;" data-toggle="collapse"
+								data-target="#permissaoDown"><i class="fa fa-user"></i>
+									Permissão <i class="fa fa-fw fa-caret-down"></i></a>
+								<ul id="permissaoDown" class="collapse">
+									<li><h:commandLink action="#{permissaoMB.abrirCadastro()}"
+											value="Cadastrar" /></li>
+									<li><h:commandLink action="#{permissaoMB.abrirListagem()}"
+											value="Listar/Alterar" /></li>
+								</ul></li>
+								<li><a href="javascript:;" data-toggle="collapse"
+								data-target="#dispositivoDown"><i class="fa fa-user"></i>
+									Dispositivo <i class="fa fa-fw fa-caret-down"></i></a>
+								<ul id="dispositivoDown" class="collapse">
+									<li><h:commandLink action="#{dispositivoMB.abrirCadastro()}"
+											value="Cadastrar" /></li>
+									<li><h:commandLink action="#{dispositivoMB.abrirListagem()}"
+											value="Listar/Alterar" /></li>
+								</ul></li>
+
+						</ul>
+					</h:form>
 				</div>
 				<!-- /.navbar-collapse -->
 			</nav>
@@ -156,13 +195,9 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<h1 class="page-header">
-								Blank Page <small>Subheading</small>
+								<ui:insert name="titulo">Titulo</ui:insert>
 							</h1>
-							<ol class="breadcrumb">
-								<li><i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a>
-								</li>
-								<li class="active"><i class="fa fa-file"></i> Blank Page</li>
-							</ol>
+
 							<div id="content">
 								<ui:insert name="conteudo">Conteúdo</ui:insert>
 							</div>
@@ -180,13 +215,12 @@
 		<!-- /#wrapper -->
 
 		<!-- jQuery -->
-		<script src="js/jquery.js"></script>
+		<script src="#{request.contextPath}/resources/js/jquery.js"></script>
 
 		<!-- Bootstrap Core JavaScript -->
-		<script src="js/bootstrap.min.js"></script>
+		<script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script>
 
 	</h:body>
-
 </ui:composition>
 </html>
 

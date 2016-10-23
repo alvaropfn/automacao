@@ -7,12 +7,17 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
+import controllers.primitive.AbstractCrudMB;
 import dao.GrupoDAO;
 import dominio.Grupo;
+import dominio.Usuario;
 
 @ManagedBean
 @SessionScoped
-public class GrupoMB {
+public class GrupoMB extends AbstractCrudMB<Grupo>{	
+	
+	public static final String FORM_PAGE = "/grupo/form.xhtml";
+	public static final String LIST_PAGE = "/grupo/list.xhtml";
 	
 	private Grupo grupo;
 	
@@ -35,8 +40,7 @@ public class GrupoMB {
 		this.grupo = grupo;
 	}
 	
-	public List<Grupo> getListaGrupo(){
-		setListaGrupos(grupoDAO.listar());
+	public List<Grupo> getListaGrupo(){		
 		return listaGrupos;
 	}
 
@@ -44,8 +48,29 @@ public class GrupoMB {
 		this.listaGrupos = listaGrupos;
 	}
 	
-	public void cadastrar() {
-		
+	
+
+	@Override
+	public String abrirCadastro() {		
+		resetMB();
+		return FORM_PAGE;
+	}
+
+	@Override
+	public String abrirEditar(int id) {
+		resetMB();
+		return LIST_PAGE;
+	}
+
+	@Override
+	public String abrirListagem() {
+		resetMB();
+		setList(grupoDAO.listar());
+		return LIST_PAGE;
+	}
+
+	@Override
+	public String cadastrar() {	
 		Grupo g = grupoDAO.buscarGrupoNome(grupo.getNome());
 		
 		if (g == null){
@@ -58,7 +83,33 @@ public class GrupoMB {
 			grupoDAO.atualizar(grupo);
 		}
 		grupo = new Grupo();
-		//return "urlPagina";
+		
+		// TODO Auto-generated method stub
+		return abrirListagem();
+	}
+
+	@Override
+	public String cancelar() {
+		resetMB();
+		return null;
+	}
+
+	@Override
+	public String deletar(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String editar(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean validaObj() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

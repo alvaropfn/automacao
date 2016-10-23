@@ -15,19 +15,16 @@
 		
 		<h:form id="form">			
 		
-			<p:dataTable var="usuario" value="#{usuarioMB.list}">
+			<p:dataTable var="dispositivo" value="#{dispositivoMB.list}">
 				<p:column headerText="Id">
-					<h:outputText value="#{usuario.id}" />
+					<h:outputText value="#{dispositivo.idDispositivo}" />
 				</p:column>
-				<p:column headerText="Nome de usuario">
-					<h:outputText value="#{car.nomeusuario}" />
+				<p:column headerText="Nome do Dispositivo">
+					<h:outputText value="#{dispositivo.nome}" />
 				</p:column>
-				<p:column headerText="Nome">
-					<h:outputText value="#{usuario.nome}" />
-				</p:column>
-				<p:column headerText="Data de Cadastro">
-					<h:outputText value="#{usuario.dataCadastro}" />
-				</p:column>
+				<p:column headerText="Comodo">
+					<h:outputText value="#{dispositivo.comodo.nome}" />
+				</p:column>			
 			</p:dataTable>
 
 		</h:form>

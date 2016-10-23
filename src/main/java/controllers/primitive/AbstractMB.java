@@ -4,10 +4,12 @@ import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 
-public abstract class AbstractMB<T> implements CrudMbean{
+public abstract class AbstractMB<T>{
 
 	private T obj;
 	
+	private String viewName;
+
 	public abstract void resetMB();
 	
 	public abstract boolean validaObj();
@@ -30,16 +32,25 @@ public abstract class AbstractMB<T> implements CrudMbean{
 		addGenericMessage("",mensagem,FacesMessage.SEVERITY_ERROR);
 	}	
 
+	public String redirect(String url){
+		return url+"?faces-redirect=true";
+	}
+	
 	public T getObj() {
 		return obj;
 	}
 
 	public void setObj(T obj) {
 		this.obj = obj;
+	}
+	
+	public String getViewName() {
+		return viewName;
+	}
+
+	public void setViewName(String viewName) {
+		this.viewName = viewName;
 	}	
 	
-	public String redirect(String url){
-		return url+"?faces-redirect=true";
-	}
 	
 }

@@ -7,27 +7,21 @@
 
 	<ui:define name="titulo">
 		<title>Login</title>
-		Lista de usuários
+		Lista de Grupos
 	
 	</ui:define>
 
 	<ui:define name="conteudo">
 		
-		<h:form id="form">			
+		<h:form id="form">		
 		
-			<p:dataTable var="usuario" value="#{usuarioMB.list}">
+			<p:dataTable var="grupo" value="#{grupoMB.list}">
 				<p:column headerText="Id">
-					<h:outputText value="#{usuario.id}" />
-				</p:column>
-				<p:column headerText="Nome de usuario">
-					<h:outputText value="#{car.nomeusuario}" />
-				</p:column>
+					<h:outputText value="#{grupo.id}" />
+				</p:column>				
 				<p:column headerText="Nome">
-					<h:outputText value="#{usuario.nome}" />
-				</p:column>
-				<p:column headerText="Data de Cadastro">
-					<h:outputText value="#{usuario.dataCadastro}" />
-				</p:column>
+					<h:outputText value="#{grupo.nome}" />
+				</p:column>				
 			</p:dataTable>
 
 		</h:form>

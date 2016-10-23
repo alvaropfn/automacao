@@ -1,0 +1,32 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/include/template.xhtml">
+
+	<ui:define name="titulo">
+		<title>Login</title>	
+		Cadastrar Grupo
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form>
+			<h:messages />
+			<div class="row">
+				<div class="col-md-6">							
+					<form role="form">
+						<div class="form-group">						
+							<label>Nome</label>
+							<p:inputText value="#{grupoMB.grupo.nome}" required="true"
+								requiredMessage="Nome Obrigatorio" styleClass="form-control"></p:inputText>
+						</div>	
+						<p:commandButton action="#{grupoMB.cadastrar()}"
+							styleClass="btn btn-default" value="Cadastrar"></p:commandButton>						
+					</form>
+
+				</div>
+			</div>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,50 +1,103 @@
 package controllers;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
-import controllers.primitive.AbstractMB;
-import dao.UsuarioDAO;
+import org.primefaces.event.CellEditEvent;
+import org.primefaces.event.RowEditEvent;
+
+import controllers.primitive.AbstractCrudMB;
+import dao.UsuarioDaoImpl;
 import dominio.Usuario;
 
-public class UsuarioMB extends AbstractMB<Usuario> {
+@ManagedBean
+@ViewScoped
+public class UsuarioMB extends AbstractCrudMB<Usuario>{
+	
+	public static final String FORM_PAGE = "/usuario/form.xhtml";
+	public static final String LIST_PAGE = "/usuario/list.xhtml";	
 	
 	@Inject
-	private UsuarioDAO usuarioDao;
+	private UsuarioDaoImpl usuarioDao;
 	
 	public UsuarioMB() {
+		super();
 		resetMB();
 	}		
 	
 	@Override
-	public void resetMB() {
-		// TODO Auto-generated method stub
-		
+	public void resetMB() {		
+		setObj(new Usuario());
 	}
 
 	@Override
-	public boolean validaObj() {			
+	public boolean validaObj() {	
 		
-		return false;		
-	}	
+		return true;		
+	}
+	
 	
 	/*
 	 * Métodos que retornam view
 	 * 
 	 * Implementam a interface CrudMBean
 	 */
-
-	@Override
-	public String cadastrar() {
-		
-		if(validaObj()){
-			
-		}
 	
+	@Override
+	public String abrirCadastro() {	
+		setViewName("Cadastrar Usuários");
+		return FORM_PAGE;
+	}
+ 
+	@Override
+	public String abrirEditar(int id) {
+		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public String abrirListagem() {
+		// TODO Auto-generated method stub
+		
+		List<Usuario> list = new ArrayList<>();
+		
+		for(int i=0; i< 10; i++){
+			Usuario usuario = new Usuario();
+			usuario.setId(i+1);
+			usuario.setNomeusuario("Usuario"+i);
+			usuario.setDataCadastro(new Date());
+			list.add(usuario);
+		}
+		
+		setList(list);
+		getList();
+		
+		return redirect(LIST_PAGE);
+	}
+	
+	@Override
+	public String cancelar() {		
+		resetMB();
+		
+		return "";
+	} 
 
 	@Override
-	public String listar() {
+	public String cadastrar() {		
+		if(validaObj()){
+			usuarioDao.add(getObj());
+		}
+	
+		return "";
+	}	
+	
+	@Override
+	public String deletar(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -53,22 +106,15 @@ public class UsuarioMB extends AbstractMB<Usuario> {
 	public String editar(int id) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public String deletar(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public UsuarioDAO getUsuarioDao() {
+	}	
+	
+	public UsuarioDaoImpl getUsuarioDao() {
 		return usuarioDao;
 	}
 
-	public void setUsuarioDao(UsuarioDAO usuarioDao) {
+	public void setUsuarioDao(UsuarioDaoImpl usuarioDao) {
 		this.usuarioDao = usuarioDao;
 	}
-
-
+		
 
 }
