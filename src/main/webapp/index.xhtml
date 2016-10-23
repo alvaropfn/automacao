@@ -2,6 +2,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	template="/include/template.xhtml">
 	
 	<ui:define name="titulo">
@@ -9,20 +10,24 @@
 	</ui:define>
 
 	<ui:define name="conteudo">
-		<h:form>
-			<h1>Bem-vindo!</h1>
-			
-			<h:messages />
-			<fieldset>
-				<p>Grupo:</p>
-				<p>
-					<h:inputText value="#{grupoMB.grupo.nome}" 
-						required="true" requiredMessage="Nome Obrigatorio" />
-				</p>
+		<h:body>
+			<h:form>
+				<h1>Bem-vindo!</h1>
 				
-				<p><h:commandButton action="#{grupoMB.cadastrar}" 
-					value="Cadastrar" /></p>
-			</fieldset>
-		</h:form>
+				<h:messages />
+				<fieldset>
+					<p>Grupo:</p>
+					<p>
+						<h:inputText value="#{grupoMB.grupo.nome}" 
+							required="true" requiredMessage="Nome Obrigatorio" />
+							<p:fileUpload></p:fileUpload>
+					</p>
+							
+					
+					<p><h:commandButton action="#{grupoMB.cadastrar}" 
+						value="Cadastrar" /></p>
+				</fieldset>
+			</h:form>
+		</h:body>
 	</ui:define>
 </ui:composition>
