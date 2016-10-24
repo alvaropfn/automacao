@@ -194,9 +194,9 @@
 					<!-- Page Heading -->
 					<div class="row">
 						<div class="col-lg-12">
-							<h1 class="page-header">
+							<h3 class="page-header">
 								<ui:insert name="titulo">Titulo</ui:insert>
-							</h1>
+							</h3>
 
 							<div id="content">
 								<ui:insert name="conteudo">Conteúdo</ui:insert>
@@ -214,9 +214,9 @@
 		</div>
 		<!-- /#wrapper -->
 
-		<!-- jQuery -->
-		<script src="#{request.contextPath}/resources/js/jquery.js"></script>
-
+		<!-- jQuery -->		
+		<h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+		<h:outputScript library="primefaces" name="jquery/jquery-plugins.js" target="head" />
 		<!-- Bootstrap Core JavaScript -->
 		<script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script>
 

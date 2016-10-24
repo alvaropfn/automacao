@@ -63,52 +63,60 @@ public class ComodoMB extends AbstractCrudMB<Comodo> {
 
 	public List<SelectItem> selectItems(){
 		List<SelectItem> itemsComodo = new ArrayList<>();
+		List<Comodo> comodos =	comodoDAO.listar();
 		
-		comodoDAO.listar().forEach(comodo -> itemsComodo.add(new SelectItem(comodo,comodo.getNome())));
+		comodos.forEach(comodo -> itemsComodo.add(new SelectItem(comodo,comodo.getNome())));
 		
 		return itemsComodo;
 	}
 
 	@Override
 	public String abrirCadastro() {
-		// TODO Auto-generated method stub
+		resetMB();
 		return FORM_PAGE;
 	}
 
 	@Override
 	public String abrirEditar(int id) {
-		// TODO Auto-generated method stub
+		resetMB();
 		return LIST_PAGE;
 	}
 
 	@Override
 	public String abrirListagem() {
-		// TODO Auto-generated method stub
+		resetMB();
 		return LIST_PAGE;
 	}
 
 	@Override
 	public String cancelar() {
-		// TODO Auto-generated method stub
+		resetMB();
 		return null;
 	}
 
 	@Override
 	public String deletar(int id) {
-		// TODO Auto-generated method stub
+		resetMB();
 		return null;
 	}
 
 	@Override
 	public String editar(int id) {
-		// TODO Auto-generated method stub
+		resetMB();
 		return null;
 	}
 
 	@Override
 	public boolean validaObj() {
-		// TODO Auto-generated method stub
+		resetMB();
 		return false;
+	}
+
+	@Override
+	public void resetMB() {
+		setObj(new Comodo());
+		setComodo(new Comodo());
+		setListaComodos(new ArrayList<>());		
 	}
 	
 }

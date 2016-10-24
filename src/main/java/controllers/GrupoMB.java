@@ -5,10 +5,12 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import controllers.primitive.AbstractCrudMB;
 import dao.GrupoDAO;
+import dominio.Dispositivo;
 import dominio.Grupo;
 import dominio.Usuario;
 
@@ -110,6 +112,21 @@ public class GrupoMB extends AbstractCrudMB<Grupo>{
 	public boolean validaObj() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void resetMB() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public List<SelectItem> selectItems() {
+		List<SelectItem> itemsgrupos = new ArrayList<>();
+		List<Grupo> grupos = grupoDAO.listar();
+
+		grupos.forEach(grupo -> itemsgrupos.add(new SelectItem(grupo, grupo.getNome())));
+
+		return itemsgrupos;
 	}
 
 }

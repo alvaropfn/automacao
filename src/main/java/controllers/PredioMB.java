@@ -100,6 +100,12 @@ public class PredioMB extends AbstractCrudMB<Predio>{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public void resetMB() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

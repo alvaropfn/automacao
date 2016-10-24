@@ -5,22 +5,23 @@ import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
-
-import org.primefaces.event.CellEditEvent;
-import org.primefaces.event.RowEditEvent;
 
 import controllers.primitive.AbstractCrudMB;
 import dao.UsuarioDaoImpl;
+import dominio.Comodo;
 import dominio.Usuario;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class UsuarioMB extends AbstractCrudMB<Usuario>{
 	
 	public static final String FORM_PAGE = "/usuario/form.xhtml";
 	public static final String LIST_PAGE = "/usuario/list.xhtml";	
+
+	private List<Usuario> usuarios = new ArrayList<>();
 	
 	@Inject
 	private UsuarioDaoImpl usuarioDao;
@@ -56,28 +57,15 @@ public class UsuarioMB extends AbstractCrudMB<Usuario>{
  
 	@Override
 	public String abrirEditar(int id) {
-		// TODO Auto-generated method stub
+		resetMB();
 		return null;
 	}
 	
 	@Override
-	public String abrirListagem() {
-		// TODO Auto-generated method stub
-		
-		List<Usuario> list = new ArrayList<>();
-		
-		for(int i=0; i< 10; i++){
-			Usuario usuario = new Usuario();
-			usuario.setId(i+1);
-			usuario.setNomeusuario("Usuario"+i);
-			usuario.setDataCadastro(new Date());
-			list.add(usuario);
-		}
-		
-		setList(list);
-		getList();
-		
-		return redirect(LIST_PAGE);
+	public String abrirListagem() {		
+		resetMB();
+		setUsuarios(usuarioDao.findAll());
+		return LIST_PAGE;
 	}
 	
 	@Override
@@ -89,11 +77,13 @@ public class UsuarioMB extends AbstractCrudMB<Usuario>{
 
 	@Override
 	public String cadastrar() {		
+		getObj().setDataCadastro(new Date());
 		if(validaObj()){
+			
 			usuarioDao.add(getObj());
 		}
 	
-		return "";
+		return abrirListagem();
 	}	
 	
 	@Override
@@ -108,12 +98,29 @@ public class UsuarioMB extends AbstractCrudMB<Usuario>{
 		return null;
 	}	
 	
+	public List<SelectItem> selectItems(){
+		List<SelectItem> itemsUsuario = new ArrayList<>();
+		List<Usuario> usuarios = usuarioDao.findAll();
+		
+		usuarios.forEach(usuario -> itemsUsuario.add(new SelectItem(usuario,usuario.getNome())));
+		
+		return itemsUsuario;
+	}
+	
 	public UsuarioDaoImpl getUsuarioDao() {
 		return usuarioDao;
 	}
 
 	public void setUsuarioDao(UsuarioDaoImpl usuarioDao) {
 		this.usuarioDao = usuarioDao;
+	}	
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 		
 
