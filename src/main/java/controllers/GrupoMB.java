@@ -98,8 +98,11 @@ public class GrupoMB extends AbstractCrudMB<Grupo>{
 
 	@Override
 	public String deletar(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Grupo g = grupoDAO.buscarGrupoId(id);
+		if (g != null){
+			grupoDAO.remover(g);
+		}
+		return LIST_PAGE;
 	}
 
 	@Override

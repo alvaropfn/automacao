@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.inject.Inject;
 
 import controllers.primitive.AbstractCrudMB;
+import dao.PermissaoDAO;
 import dominio.Dispositivo;
 import dominio.Permissao;
 import dominio.Usuario;
@@ -18,6 +20,12 @@ public class PermissaoMB extends AbstractCrudMB<Permissao> {
 
 	private List<Dispositivo> dispositivosSelecionados;
 
+	private Permissao permissao;
+	
+	@Inject
+	private PermissaoDAO permissaoDao;
+	
+	
 	@Override
 	public String abrirCadastro() {
 		resetMB();
@@ -38,26 +46,38 @@ public class PermissaoMB extends AbstractCrudMB<Permissao> {
 
 	@Override
 	public String cadastrar() {
-		// TODO Auto-generated method stub
+		Permissao p = permissaoDao.buscarPermissaoNome(permissao.getNome());
+		if (p == null){
+			permissaoDao.salvar(p);
+		}
+		else {
+			permissaoDao.atualizar(p);
+		}
 		return null;
 	}
 
 	@Override
 	public String cancelar() {
-		// TODO Auto-generated method stub
+		resetMB();
 		return null;
 	}
 
 	@Override
 	public String deletar(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Permissao p = permissaoDao.buscarPermissaoId(id);
+		if(p!=null){
+			permissaoDao.remover(p);
+		}
+		return LIST_PAGE;
 	}
 
 	@Override
 	public String editar(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Permissao p = permissaoDao.buscarPermissaoId(id);
+		if(p!=null){
+			permissaoDao.atualizar(p);
+		}
+		return LIST_PAGE;
 	}
 
 	@Override

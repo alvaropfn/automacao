@@ -46,5 +46,17 @@ public class ComodoDAO {
 			return null;
 		}
 	}
+	
+	
+	public Comodo buscarComodoId(int id) {
+		String qs = "select p from Comodo c where p.id = :id";
+		Query q = em.createQuery(qs);
+		q.setParameter("id", id);
+		try {
+			return (Comodo) q.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
 
 }

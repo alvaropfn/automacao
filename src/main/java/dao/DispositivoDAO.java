@@ -46,4 +46,15 @@ public class DispositivoDAO {
 			return null;
 		}
 	}
+	
+	public Dispositivo buscarDispositivoId(int id) {
+		String qs = "select p from Dispositivo p where p.id = :id";
+		Query q = em.createQuery(qs);
+		q.setParameter("id", id);
+		try {
+			return (Dispositivo) q.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
 }

@@ -10,6 +10,7 @@ import javax.inject.Inject;
 
 import controllers.primitive.AbstractCrudMB;
 import dao.ComodoDAO;
+import dao.DispositivoDAO;
 import dominio.Comodo;
 
 @ManagedBean
@@ -58,7 +59,7 @@ public class ComodoMB extends AbstractCrudMB<Comodo> {
 		else {
 			comodoDAO.atualizar(comodo);
 		}
-		return "urlPagina";
+		return LIST_PAGE;
 	}
 
 	public List<SelectItem> selectItems(){
@@ -96,13 +97,21 @@ public class ComodoMB extends AbstractCrudMB<Comodo> {
 
 	@Override
 	public String deletar(int id) {
-		resetMB();
-		return null;
+		Comodo c = comodoDAO.buscarComodoId(id);
+		if(c!=null){
+			comodoDAO.remover(c);
+		}
+		
+		return LIST_PAGE;
 	}
 
+	///CADASTRAR JÁ FAZ EDIÇÃO, MAS ARRUMEI O MÉTODO
 	@Override
 	public String editar(int id) {
-		resetMB();
+		Comodo c = comodoDAO.buscarComodoId(id);
+		if (c!=null){
+			comodoDAO.atualizar(c);
+		}
 		return null;
 	}
 

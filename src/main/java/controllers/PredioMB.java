@@ -85,10 +85,15 @@ public class PredioMB extends AbstractCrudMB<Predio>{
 
 	@Override
 	public String deletar(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Predio p = predioDAO.buscarPredioId(id);
+		if(p !=null){
+			predioDAO.remover(p);
+		}
+		return LIST_PAGE;
 	}
 
+	
+	//CADASTRAR JÁ FAZ EDIÇÃO!
 	@Override
 	public String editar(int id) {
 		// TODO Auto-generated method stub

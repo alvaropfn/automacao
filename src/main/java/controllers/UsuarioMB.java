@@ -92,6 +92,8 @@ public class UsuarioMB extends AbstractCrudMB<Usuario>{
 		return null;
 	}
 
+	
+	///CADASTRO JÁ FAZ EDIÇÃO!
 	@Override
 	public String editar(int id) {
 		// TODO Auto-generated method stub

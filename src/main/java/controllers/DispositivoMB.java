@@ -17,6 +17,9 @@ public class DispositivoMB extends AbstractCrudMB<Dispositivo> {
 
 	public static final String FORM_PAGE = "/dispositivo/form.xhtml";
 	public static final String LIST_PAGE = "/dispositivo/list.xhtml";
+	
+	
+	private Dispositivo dispositivo;
 
 	@Inject
 	private DispositivoDAO dispositivoDao;
@@ -41,26 +44,39 @@ public class DispositivoMB extends AbstractCrudMB<Dispositivo> {
 
 	@Override
 	public String cadastrar() {
-		// TODO Auto-generated method stub
-		return null;
+		Dispositivo d = dispositivoDao.buscarDispositivoNome(dispositivo.getNome());
+		if(d == null){
+			dispositivoDao.salvar(d);
+		}
+		else {
+			dispositivoDao.atualizar(d);
+		}
+		return LIST_PAGE;
 	}
 
 	@Override
 	public String cancelar() {
-		// TODO Auto-generated method stub
+		resetMB();
 		return null;
 	}
 
 	@Override
 	public String deletar(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Dispositivo d = dispositivoDao.buscarDispositivoId(id);
+		if (d != null){
+			dispositivoDao.remover(d);	
+		}
+		return LIST_PAGE;
 	}
 
 	@Override
 	public String editar(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Dispositivo d = dispositivoDao.buscarDispositivoId(id);
+		if(d != null){
+			dispositivoDao.atualizar(d);
+		}
+		
+		return LIST_PAGE;
 	}
 
 	@Override

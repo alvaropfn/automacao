@@ -51,5 +51,16 @@ public class PermissaoDAO {
 		}
 	}
 	
+	public Permissao buscarPermissaoId(int id){
+		String qs = "SELECT p FROM Permissao P WHERE p.id = :id";
+		Query q = em.createQuery(qs);
+		q.setParameter("id", id);
+		try{
+			return (Permissao) q.getSingleResult();
+		}catch(NoResultException e){
+			return null;
+		}
+	}
+	
 
 }

@@ -45,5 +45,16 @@ public class PredioDAO {
 			return null;
 		}
 	}
+	
+	public Predio buscarPredioId(int id) {
+		String qs = "select p from Predio p where p.id = :id";
+		Query q = em.createQuery(qs);
+		q.setParameter("id", id);
+		try {
+			return (Predio) q.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
 
 }

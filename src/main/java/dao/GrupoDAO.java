@@ -48,4 +48,15 @@ public class GrupoDAO {
 			return null;
 		}
 	}
+	
+	public Grupo buscarGrupoId(int id) {
+		String qs = "select g from Grupo g where g.Id = :id";
+		Query q = em.createQuery(qs);
+		q.setParameter("id", id);
+		try {
+			return (Grupo) q.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
 }
