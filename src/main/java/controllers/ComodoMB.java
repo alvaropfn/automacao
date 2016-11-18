@@ -52,13 +52,19 @@ public class ComodoMB extends AbstractCrudMB<Comodo> {
 	
 	@Override
 	public String cadastrar() {
-		Comodo c = comodoDAO.buscarComodoNome(comodo.getNome());
-		if (c == null){
+		if (comodo.getId() == 0){
+			comodoDAO.salvar(comodo);
+		}
+		else {
+			
+		}
+		//Comodo c = comodoDAO.buscarComodoId(comodo.getId());
+		/*if (c == null){
 			comodoDAO.salvar(comodo);
 		}
 		else {
 			comodoDAO.atualizar(comodo);
-		}
+		}*/
 		return LIST_PAGE;
 	}
 
@@ -108,11 +114,16 @@ public class ComodoMB extends AbstractCrudMB<Comodo> {
 	///CADASTRAR JÁ FAZ EDIÇÃO, MAS ARRUMEI O MÉTODO
 	@Override
 	public String editar(int id) {
-		Comodo c = comodoDAO.buscarComodoId(id);
-		if (c!=null){
-			comodoDAO.atualizar(c);
+		if (id != 0){
+			Comodo c = comodoDAO.buscarComodoId(id);
+			if (c!=null){
+				comodoDAO.atualizar(c);
+			}
+			return LIST_PAGE;	
 		}
-		return null;
+		else {
+			return LIST_PAGE;
+		}
 	}
 
 	@Override

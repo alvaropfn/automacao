@@ -46,14 +46,23 @@ public class PermissaoMB extends AbstractCrudMB<Permissao> {
 
 	@Override
 	public String cadastrar() {
-		Permissao p = permissaoDao.buscarPermissaoNome(permissao.getNome());
+		
+		if(permissao.getId() == 0){
+			permissaoDao.salvar(permissao);
+		}
+		else {
+			permissaoDao.atualizar(permissao);
+		}
+		
+		return abrirListagem();
+		/*Permissao p = permissaoDao.buscarPermissaoNome(permissao.getNome());
 		if (p == null){
 			permissaoDao.salvar(p);
 		}
 		else {
 			permissaoDao.atualizar(p);
 		}
-		return null;
+		return null;*/
 	}
 
 	@Override

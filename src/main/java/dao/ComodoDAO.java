@@ -36,6 +36,7 @@ public class ComodoDAO {
 		return (List<Comodo>) q.getResultList();
 	}
 	
+	
 	public Comodo buscarComodoNome(String nome) {
 		String qs = "select p from Comodo c where p.nome = :nome";
 		Query q = em.createQuery(qs);

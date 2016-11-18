@@ -9,7 +9,11 @@ import javax.inject.Inject;
 
 import controllers.primitive.AbstractCrudMB;
 import dao.PredioDAO;
+import dominio.Comodo;
+import dominio.Dispositivo;
+import dominio.Permissao;
 import dominio.Predio;
+import dominio.Usuario;
 
 @ManagedBean
 @SessionScoped
@@ -50,37 +54,40 @@ public class PredioMB extends AbstractCrudMB<Predio>{
 	
 	@Override
 	public String cadastrar() {
-		Predio p = predioDAO.buscarPredioNome(predio.getNome());
-		if (p == null){
+		
+		if(predio.getId() == 0){
 			predioDAO.salvar(predio);
 		}
 		else {
 			predioDAO.atualizar(predio);
 		}
-		return "urlPagina";
+		/*Predio p = predioDAO.buscarPredioNome(predio.getNome());
+		if (p == null){
+			predioDAO.salvar(predio);
+		}
+		else {
+			predioDAO.atualizar(predio);
+		}*/
+		return abrirListagem();
 	}
 	@Override
 	public String abrirCadastro() {
-		// TODO Auto-generated method stub
 		return FORM_PAGE;
 	}
 
 	@Override
 	public String abrirEditar(int id) {
-		// TODO Auto-generated method stub
 		return LIST_PAGE;
 	}
 
 	@Override
 	public String abrirListagem() {
-		// TODO Auto-generated method stub
 		return LIST_PAGE;
 	}
 
 	@Override
 	public String cancelar() {
-		// TODO Auto-generated method stub
-		return null;
+		return LIST_PAGE;
 	}
 
 	@Override
@@ -92,12 +99,12 @@ public class PredioMB extends AbstractCrudMB<Predio>{
 		return LIST_PAGE;
 	}
 
-	
-	//CADASTRAR JÁ FAZ EDIÇÃO!
 	@Override
 	public String editar(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		if(id != 0) {
+			predioDAO.atualizar(predio);
+		}
+		return abrirListagem();
 	}
 
 	@Override
@@ -108,7 +115,8 @@ public class PredioMB extends AbstractCrudMB<Predio>{
 
 	@Override
 	public void resetMB() {
-		// TODO Auto-generated method stub
+		setObj(new Predio());
+		getObj().setComodos(new ArrayList<Comodo>());
 		
 	}
 	

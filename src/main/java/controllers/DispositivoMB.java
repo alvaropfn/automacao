@@ -11,6 +11,8 @@ import controllers.primitive.AbstractCrudMB;
 import dao.DispositivoDAO;
 import dominio.Comodo;
 import dominio.Dispositivo;
+import dominio.Permissao;
+import dominio.Usuario;
 
 @ManagedBean
 public class DispositivoMB extends AbstractCrudMB<Dispositivo> {
@@ -44,13 +46,19 @@ public class DispositivoMB extends AbstractCrudMB<Dispositivo> {
 
 	@Override
 	public String cadastrar() {
-		Dispositivo d = dispositivoDao.buscarDispositivoNome(dispositivo.getNome());
+		if(dispositivo.getId() == 0){
+			dispositivoDao.salvar(dispositivo);
+		}
+		else {
+			dispositivoDao.atualizar(dispositivo);
+		}
+		/*Dispositivo d = dispositivoDao.buscarDispositivoNome(dispositivo.getNome());
 		if(d == null){
 			dispositivoDao.salvar(d);
 		}
 		else {
 			dispositivoDao.atualizar(d);
-		}
+		}*/
 		return LIST_PAGE;
 	}
 
@@ -71,13 +79,24 @@ public class DispositivoMB extends AbstractCrudMB<Dispositivo> {
 
 	@Override
 	public String editar(int id) {
-		Dispositivo d = dispositivoDao.buscarDispositivoId(id);
+		if (id != 0){
+			Dispositivo d = dispositivoDao.buscarDispositivoId(id);
+			if (d!=null){
+				dispositivoDao.atualizar(d);
+			}
+			return LIST_PAGE;	
+		}
+		else {
+			return LIST_PAGE;
+		}
+		
+/*		Dispositivo d = dispositivoDao.buscarDispositivoId(id);
 		if(d != null){
 			dispositivoDao.atualizar(d);
 		}
 		
 		return LIST_PAGE;
-	}
+*/	}
 
 	@Override
 	public boolean validaObj() {
@@ -88,6 +107,7 @@ public class DispositivoMB extends AbstractCrudMB<Dispositivo> {
 	@Override
 	public void resetMB() {
 		setObj(new Dispositivo());
+		
 	}
 
 	public List<SelectItem> selectItems() {

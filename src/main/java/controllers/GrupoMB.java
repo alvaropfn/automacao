@@ -12,6 +12,7 @@ import controllers.primitive.AbstractCrudMB;
 import dao.GrupoDAO;
 import dominio.Dispositivo;
 import dominio.Grupo;
+import dominio.Permissao;
 import dominio.Usuario;
 
 @ManagedBean
@@ -73,7 +74,15 @@ public class GrupoMB extends AbstractCrudMB<Grupo>{
 
 	@Override
 	public String cadastrar() {	
-		Grupo g = grupoDAO.buscarGrupoNome(grupo.getNome());
+		if(grupo.getId() == 0){
+			grupoDAO.salvar(grupo);
+		}
+		else {
+			grupoDAO.atualizar(grupo);
+		}
+		
+		
+		/*Grupo g = grupoDAO.buscarGrupoNome(grupo.getNome());
 		
 		if (g == null){
 			System.out.println("g é nulo");
@@ -84,7 +93,7 @@ public class GrupoMB extends AbstractCrudMB<Grupo>{
 			//System.out.println("g não é nulo");
 			grupoDAO.atualizar(grupo);
 		}
-		grupo = new Grupo();
+		grupo = new Grupo();*/
 		
 		// TODO Auto-generated method stub
 		return abrirListagem();
@@ -107,8 +116,10 @@ public class GrupoMB extends AbstractCrudMB<Grupo>{
 
 	@Override
 	public String editar(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		if(id != 0) {
+			grupoDAO.atualizar(grupo);
+		}
+		return abrirListagem();
 	}
 
 	@Override
@@ -119,8 +130,7 @@ public class GrupoMB extends AbstractCrudMB<Grupo>{
 
 	@Override
 	public void resetMB() {
-		// TODO Auto-generated method stub
-		
+		setObj(new Grupo());		
 	}
 	
 	public List<SelectItem> selectItems() {
