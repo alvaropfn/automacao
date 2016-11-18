@@ -56,8 +56,9 @@ public class ComodoMB extends AbstractCrudMB<Comodo> {
 			comodoDAO.salvar(comodo);
 		}
 		else {
-			
+			comodoDAO.atualizar(comodo);
 		}
+		resetMB();
 		//Comodo c = comodoDAO.buscarComodoId(comodo.getId());
 		/*if (c == null){
 			comodoDAO.salvar(comodo);

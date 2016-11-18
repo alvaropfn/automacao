@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
@@ -15,6 +16,7 @@ import dominio.Permissao;
 import dominio.Usuario;
 
 @ManagedBean
+@SessionScoped
 public class DispositivoMB extends AbstractCrudMB<Dispositivo> {
 
 	public static final String FORM_PAGE = "/dispositivo/form.xhtml";
@@ -25,6 +27,18 @@ public class DispositivoMB extends AbstractCrudMB<Dispositivo> {
 
 	@Inject
 	private DispositivoDAO dispositivoDao;
+	
+	public DispositivoMB() {
+		dispositivo = new Dispositivo();
+	}
+	
+	public Dispositivo getDispositivo() {
+		return dispositivo;
+	}
+	
+	public void setDispositivo(Dispositivo dispositivo){
+		this.dispositivo = dispositivo;
+	}
 
 	@Override
 	public String abrirCadastro() {
