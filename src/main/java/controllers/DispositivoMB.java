@@ -65,7 +65,7 @@ public class DispositivoMB extends AbstractCrudMB<Dispositivo> {
 	@Override
 	public String cancelar() {
 		resetMB();
-		return null;
+		return abrirListagem();
 	}
 
 	@Override

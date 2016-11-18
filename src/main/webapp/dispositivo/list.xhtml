@@ -17,11 +17,14 @@
 		
 			<p:dataTable var="dispositivo" value="#{dispositivoMB.list}">
 				<p:column headerText="Id">
-					<h:outputText value="#{dispositivo.idDispositivo}" />
+					<h:outputText value="#{dispositivo.id}" />
 				</p:column>
 				<p:column headerText="Nome do Dispositivo">
 					<h:outputText value="#{dispositivo.nome}" />
 				</p:column>
+				<p:column headerText="Prédio">
+					<h:outputText value="#{dispositivo.comodo.predio.nome}" />
+				</p:column>	
 				<p:column headerText="Comodo">
 					<h:outputText value="#{dispositivo.comodo.nome}" />
 				</p:column>			

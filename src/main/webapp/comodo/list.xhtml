@@ -6,8 +6,8 @@
 	template="/include/template.xhtml">
 
 	<ui:define name="titulo">
-		<title>Login</title>
-		Lista de usuários
+		<title>Cômodos</title>
+		Lista de Cômodos
 	
 	</ui:define>
 
@@ -15,18 +15,15 @@
 		
 		<h:form id="form">			
 		
-			<p:dataTable var="usuario" value="#{usuarioMB.list}">
+			<p:dataTable var="comodos" value="#{usuarioMB.list}">
 				<p:column headerText="Id">
-					<h:outputText value="#{usuario.id}" />
+					<h:outputText value="#{comodo.id}" />
 				</p:column>
-				<p:column headerText="Nome de usuario">
-					<h:outputText value="#{car.nomeusuario}" />
+				<p:column headerText="Nome do Cômodo">
+					<h:outputText value="#{comodo.nome}" />
 				</p:column>
-				<p:column headerText="Nome">
-					<h:outputText value="#{usuario.nome}" />
-				</p:column>
-				<p:column headerText="Data de Cadastro">
-					<h:outputText value="#{usuario.dataCadastro}" />
+				<p:column headerText="Prédio do Cômodo">
+					<h:outputText value="#{comodo.predio.nome}" />
 				</p:column>
 			</p:dataTable>
 

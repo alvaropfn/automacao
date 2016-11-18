@@ -7,7 +7,7 @@
 	<ui:define name="titulo">
 		<title>Login</title>
 		<h:messages />
-		Cadastrar Grupo
+		Cadastrar Prédio
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -17,11 +17,18 @@
 					<form role="form">
 						<div class="form-group">						
 							<label>Nome</label>
-							<p:inputText value="#{grupoMB.grupo.nome}" required="true"
+							<p:inputText value="#{predioMB.predio.nome}" required="true"
 								requiredMessage="Nome Obrigatorio" styleClass="form-control"></p:inputText>
 						</div>	
-						<p:commandButton action="#{grupoMB.cadastrar}"
-							styleClass="btn btn-default" value="Cadastrar"></p:commandButton>						
+						<div class="form-group">						
+							<label>Endereço</label>
+							<p:inputText value="#{predioMB.predio.endereco}" required="true"
+								requiredMessage="Endereço obrigatório" styleClass="form-control"></p:inputText>
+						</div>	
+						<p:commandButton action="#{predioMB.cadastrar}"
+							styleClass="btn btn-default" value="Cadastrar"></p:commandButton>
+						<p:commandButton action="#{predioMB.cancelar()}"
+							styleClass="btn btn-default" value="Cancelar"></p:commandButton>						
 					</form>
 
 				</div>

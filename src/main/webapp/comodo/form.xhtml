@@ -5,9 +5,9 @@
 	xmlns:p="http://primefaces.org/ui" template="/include/template.xhtml">
 
 	<ui:define name="titulo">
-		<title>Login</title>
+		<title>Cômodos</title>
 		<h:messages />
-		Cadastrar Grupo
+		Cadastrar Cômodos
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -17,10 +17,15 @@
 					<form role="form">
 						<div class="form-group">						
 							<label>Nome</label>
-							<p:inputText value="#{grupoMB.grupo.nome}" required="true"
+							<p:inputText value="#{comodoMB.comodo.nome}" required="true"
 								requiredMessage="Nome Obrigatorio" styleClass="form-control"></p:inputText>
 						</div>	
-						<p:commandButton action="#{grupoMB.cadastrar}"
+						<div class="form-group">						
+							<label>Aqui deveria ser um combobox</label>
+							
+							<!--listagem-->
+						</div>	
+						<p:commandButton action="#{comodoMB.cadastrar}"
 							styleClass="btn btn-default" value="Cadastrar"></p:commandButton>						
 					</form>
 
