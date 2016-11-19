@@ -1,7 +1,9 @@
 package dominio;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.model.SelectItem;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import dao.PredioDAO;
 
 @Entity
 @Table(name="Predios")
@@ -36,6 +40,8 @@ public class Predio {
 		this.endereco = endereco;
 		this.comodos = comodos;
 	}
+	
+	
 
 	public int getId() {
 		return id;

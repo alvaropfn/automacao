@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import controllers.primitive.AbstractCrudMB;
@@ -44,12 +45,20 @@ public class PredioMB extends AbstractCrudMB<Predio>{
 	}
 	
 	public List<Predio> getListaPredio(){
-		setListaPredios(predioDAO.listar());
 		return listaPredios;
 	}
 
 	public void setListaPredios(List<Predio> listaPredios){
 		this.listaPredios = listaPredios;
+	}
+	
+	public List<SelectItem> selectItems(){
+		List<SelectItem> itemsPredio = new ArrayList<>();
+		List<Predio> predios = predioDAO.findAll();
+		
+		predios.forEach(predio -> itemsPredio.add(new SelectItem(predio,predio.getNome())));
+		
+		return itemsPredio;
 	}
 	
 	@Override
@@ -70,23 +79,28 @@ public class PredioMB extends AbstractCrudMB<Predio>{
 		}*/
 		return abrirListagem();
 	}
+	
 	@Override
 	public String abrirCadastro() {
+		resetMB();
 		return FORM_PAGE;
 	}
 
 	@Override
 	public String abrirEditar(int id) {
+		resetMB();
 		return LIST_PAGE;
 	}
 
 	@Override
 	public String abrirListagem() {
+		resetMB();
 		return LIST_PAGE;
 	}
 
 	@Override
 	public String cancelar() {
+		resetMB();
 		return LIST_PAGE;
 	}
 

@@ -20,11 +20,17 @@
 							<p:inputText value="#{comodoMB.comodo.nome}" required="true"
 								requiredMessage="Nome Obrigatorio" styleClass="form-control"></p:inputText>
 						</div>	
-						<div class="form-group">						
-							<label>Aqui deveria ser um combobox</label>
-							
-							<!--listagem-->
-						</div>	
+						<div class="form-group">
+							<label>Prédios</label>
+							<div class="form-group">
+								<p:selectOneMenu value="#{comodoMB.comodo.predio}"
+									required="true" requiredMessage="Prédio Obrigatório"
+									converter="#{omnifaces.omnifaces.SelectItemsIndexConverter}">
+									<f:selectItems value="#{predioMB.selectItems()}"></f:selectItems>
+								</p:selectOneMenu>
+							</div>
+
+						</div>
 						<p:commandButton action="#{comodoMB.cadastrar}"
 							styleClass="btn btn-default" value="Cadastrar"></p:commandButton>						
 					</form>

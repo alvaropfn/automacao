@@ -28,6 +28,14 @@ public class PredioDAO {
 		em.remove(p);
 	}
 	
+	
+	@SuppressWarnings("unchecked")
+	public List<Predio> findAll() {
+		String qs = "select p from Predio p";
+		Query q = em.createQuery(qs);
+		return (List<Predio>) q.getResultList();
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Predio> listar() {
 		String qs = "select p from Predio p";

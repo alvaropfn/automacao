@@ -15,17 +15,14 @@
 		
 		<h:form id="form">			
 		
-			<p:dataTable var="usuario" value="#{predioMB.list}">
+			<p:dataTable var="predio" value="#{predioMB.list}">
 				<p:column headerText="Id">
 					<h:outputText value="#{predio.id}" />
 				</p:column>
 				<p:column headerText="Nome do Prédio">
 					<h:outputText value="#{predio.nome}" />
 				</p:column>
-				
-				<p:column headerText="Endereço do Prédio">
-					<h:outputText value="#{predio.endereco}" />
-				</p:column>
+
 			</p:dataTable>
 
 		</h:form>
