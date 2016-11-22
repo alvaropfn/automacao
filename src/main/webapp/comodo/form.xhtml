@@ -25,7 +25,7 @@
 							<div class="form-group">
 								<p:selectOneMenu value="#{comodoMB.comodo.predio}"
 									required="true" requiredMessage="Prédio Obrigatório"
-									converter="#{omnifaces.omnifaces.SelectItemsIndexConverter}">
+									converter="#{omnifaces.SelectItemsIndexConverter}">
 									<f:selectItems value="#{predioMB.selectItems()}"></f:selectItems>
 								</p:selectOneMenu>
 							</div>
