@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+
+<ui:composition>
+	<h:head>
+
+		<link href="#{request.contextPath}/resources/css/bootstrap.min.css"
+			rel="stylesheet"></link>
+	
+		<link
+			href="#{request.contextPath}/resources/font-awesome/css/font-awesome.min.css"
+			rel="stylesheet" type="text/css"></link>
+	</h:head>
+
+	<h:body>
+			
+				<div id="content"
+					style="padding-right: 15px; padding-left: 15px; margin-right: 25%; margin-left: 25%; min-height: 100%; /* Fallback for browsers do NOT support vh unit */ min-height: 100vh; /* These two lines are counted as one :-)       */ display: flex; align-items: center;">
+			<ui:insert name="conteudo">Conteúdo</ui:insert>
+		</div>
+		
+		
+
+		<!-- jQuery -->
+		<h:outputScript library="primefaces" name="jquery/jquery.js"
+			target="head" />
+		<h:outputScript library="primefaces" name="jquery/jquery-plugins.js"
+			target="head" />
+		<!-- Bootstrap Core JavaScript -->
+		<script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script>
+
+	</h:body>
+</ui:composition>
+</html>
+

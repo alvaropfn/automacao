@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/include/template.xhtml">
+
+	<ui:define name="titulo">
+		<title>Login</title>
+		Lista de Grupos
+	
+	</ui:define>
+
+	<ui:define name="conteudo">
+		
+		<h:form id="form">		
+		
+			<p:dataTable var="grupo" value="#{grupoMB.list}">
+				<p:column headerText="Id">
+					<h:outputText value="#{grupo.id}" />
+				</p:column>				
+				<p:column headerText="Nome">
+					<h:outputText value="#{grupo.nome}" />
+				</p:column>				
+			</p:dataTable>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

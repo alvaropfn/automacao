@@ -7,13 +7,17 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
+import controllers.primitive.AbstractCrudMB;
 import dao.PredioDAO;
 import dominio.Predio;
 
 @ManagedBean
 @SessionScoped
-public class PredioMB {
+public class PredioMB extends AbstractCrudMB<Predio>{
 
+	public static final String FORM_PAGE = "/predio/form.xhtml";
+	public static final String LIST_PAGE = "/predio/list.xhtml";	
+	
 	private Predio predio;
 	
 	@Inject
@@ -44,6 +48,7 @@ public class PredioMB {
 		this.listaPredios = listaPredios;
 	}
 	
+	@Override
 	public String cadastrar() {
 		Predio p = predioDAO.buscarPredioNome(predio.getNome());
 		if (p == null){
@@ -53,6 +58,53 @@ public class PredioMB {
 			predioDAO.atualizar(predio);
 		}
 		return "urlPagina";
+	}
+	@Override
+	public String abrirCadastro() {
+		// TODO Auto-generated method stub
+		return FORM_PAGE;
+	}
+
+	@Override
+	public String abrirEditar(int id) {
+		// TODO Auto-generated method stub
+		return LIST_PAGE;
+	}
+
+	@Override
+	public String abrirListagem() {
+		// TODO Auto-generated method stub
+		return LIST_PAGE;
+	}
+
+	@Override
+	public String cancelar() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String deletar(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String editar(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean validaObj() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void resetMB() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

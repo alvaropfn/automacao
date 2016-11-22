@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/include/template.xhtml">
+
+	<ui:define name="titulo">
+		<title>Cadastrar Permissão</title>
+		<h:messages />
+		Cadastrar Permissão
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form>
+			<div class="row">
+				<div class="col-md-6">
+					<form role="form">
+						<div class="form-group">
+							<label>Nome</label>
+							<p:inputText value="#{permissaoMB.obj.nome}" required="true"
+								requiredMessage="Nome Obrigatorio" styleClass="form-control"></p:inputText>
+						</div>
+						<div class="form-group">
+							<label>Usuário</label>
+							<div class="form-group">
+								<p:selectOneMenu value="#{permissaoMB.obj.usuario}"
+									required="true" requiredMessage="Nome Obrigatorio"
+									converter="#{omnifaces.omnifaces.SelectItemsIndexConverter}">
+									<f:selectItems value="#{usuarioMB.selectItems()}"></f:selectItems>
+								</p:selectOneMenu>
+							</div>
+
+						</div>
+						<div class="form-group">
+							<label>Dispositivos</label>
+							<p:selectManyCheckbox value="#{permissaoMB.obj.dispositivos}"
+								required="true" requiredMessage="Nome Obrigatorio">
+								<f:selectItems value="#{dispositivoMB.selectItems()}"></f:selectItems>
+							</p:selectManyCheckbox>
+						</div>
+						<p:commandButton action="#{grupoMB.cadastrar}"
+							styleClass="btn btn-default" value="Cadastrar"></p:commandButton>
+						<p:commandButton action="#{grupoMB.cancelar}"
+							styleClass="btn btn-default" value="Cancelar"></p:commandButton>
+					</form>
+
+				</div>
+			</div>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -7,8 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,9 +22,11 @@ public class Permissao {
 	@Column(nullable=false)
 	private String nome;
 	
-	@OneToMany
-	@JoinColumn(name="idDispositivo")
+	@ManyToMany(mappedBy="Permissoes")
 	private List<Dispositivo> dispositivos;
+	
+	@ManyToOne	
+	private Usuario usuario;
 
 	public int getId() {
 		return id;
@@ -49,7 +51,14 @@ public class Permissao {
 	public void setDispositivos(List<Dispositivo> dispositivos) {
 		this.dispositivos = dispositivos;
 	}
-	
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 	
 	
 }

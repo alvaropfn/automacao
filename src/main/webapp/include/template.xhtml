@@ -1,16 +1,226 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
-	
+
+
+<ui:composition>
 	<h:head>
-		<ui:insert name="titulo">Título</ui:insert>
+
+		<link href="#{request.contextPath}/resources/css/bootstrap.min.css"
+			rel="stylesheet"></link>
+		<link href="#{request.contextPath}/resources/css/sb-admin.css"
+			rel="stylesheet"></link>
+		<link
+			href="#{request.contextPath}/resources/font-awesome/css/font-awesome.min.css"
+			rel="stylesheet" type="text/css"></link>
 	</h:head>
-	
+
 	<h:body>
-		<div id="content">
-			<ui:insert name="conteudo">Conteúdo</ui:insert>
+		<div id="wrapper">
+
+			<!-- Navigation -->
+			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target=".navbar-ex1-collapse">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html">Automação</a>
+				</div>
+				<!-- Top Menu Items -->
+				<ul class="nav navbar-right top-nav">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"><i class="fa fa-envelope"></i> <b
+							class="caret"></b></a>
+						<ul class="dropdown-menu message-dropdown">
+							<li class="message-preview"><a href="#">
+									<div class="media">
+										<span class="pull-left"> <img class="media-object"
+											src="http://placehold.it/50x50" alt="" /></span>
+										<div class="media-body">
+											<h5 class="media-heading">
+												<strong>John Smith</strong>
+											</h5>
+											<p class="small text-muted">
+												<i class="fa fa-clock-o"></i> Yesterday at 4:32 PM
+											</p>
+											<p>Lorem ipsum dolor sit amet, consectetur...</p>
+										</div>
+									</div>
+							</a></li>
+							<li class="message-preview"><a href="#">
+									<div class="media">
+										<span class="pull-left"> <img class="media-object"
+											src="http://placehold.it/50x50" alt="" /></span>
+										<div class="media-body">
+											<h5 class="media-heading">
+												<strong>John Smith</strong>
+											</h5>
+											<p class="small text-muted">
+												<i class="fa fa-clock-o"></i> Yesterday at 4:32 PM
+											</p>
+											<p>Lorem ipsum dolor sit amet, consectetur...</p>
+										</div>
+									</div>
+							</a></li>
+							<li class="message-preview"><a href="#">
+									<div class="media">
+										<span class="pull-left"> <img class="media-object"
+											src="http://placehold.it/50x50" alt="" /></span>
+										<div class="media-body">
+											<h5 class="media-heading">
+												<strong>John Smith</strong>
+											</h5>
+											<p class="small text-muted">
+												<i class="fa fa-clock-o"></i> Yesterday at 4:32 PM
+											</p>
+											<p>Lorem ipsum dolor sit amet, consectetur...</p>
+										</div>
+									</div>
+							</a></li>
+							<li class="message-footer"><a href="#">Read All New
+									Messages</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"><i class="fa fa-bell"></i> <b
+							class="caret"></b></a>
+						<ul class="dropdown-menu alert-dropdown">
+							<li><a href="#">Alert Name <span
+									class="label label-default">Alert Badge</span></a></li>
+							<li><a href="#">Alert Name <span
+									class="label label-primary">Alert Badge</span></a></li>
+							<li><a href="#">Alert Name <span
+									class="label label-success">Alert Badge</span></a></li>
+							<li><a href="#">Alert Name <span
+									class="label label-info">Alert Badge</span></a></li>
+							<li><a href="#">Alert Name <span
+									class="label label-warning">Alert Badge</span></a></li>
+							<li><a href="#">Alert Name <span
+									class="label label-danger">Alert Badge</span></a></li>
+							<li class="divider"></li>
+							<li><a href="#">View All</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b
+							class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#"><i class="fa fa-fw fa-user"></i> Profile</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-envelope"></i>
+									Inbox</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-gear"></i>
+									Settings</a></li>
+							<li class="divider"></li>
+							<li><a href="#"><i class="fa fa-fw fa-power-off"></i>
+									Log Out</a></li>
+						</ul></li>
+				</ul>
+				<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+				<div class="collapse navbar-collapse navbar-ex1-collapse">
+
+					<h:form>
+						<ul class="nav navbar-nav side-nav">
+							<li><a href="#{request.contextPath}/index.xhtml"><i
+									class="fa fa-fw fa-dashboard"></i> Inicio</a></li>
+							<li><a href="javascript:;" data-toggle="collapse"
+								data-target="#grupoDown"><i class="fa fa-users"
+									aria-hidden="true"></i> Grupo <i class="fa fa-fw fa-caret-down"></i></a>
+								<ul id="grupoDown" class="collapse">
+									<li><h:commandLink action="#{grupoMB.abrirCadastro()}"
+											value="Cadastrar" /></li>
+									<li><h:commandLink action="#{grupoMB.abrirListagem()}"
+											value="Listar/Alterar" /></li>
+								</ul></li>
+							<li><a href="javascript:;" data-toggle="collapse"
+								data-target="#usuarioDown"><i class="fa fa-user"></i>
+									Usuário <i class="fa fa-fw fa-caret-down"></i></a>
+								<ul id="usuarioDown" class="collapse">
+									<li><h:commandLink action="#{usuarioMB.abrirCadastro()}"
+											value="Cadastrar" /></li>
+									<li><h:commandLink action="#{usuarioMB.abrirListagem()}"
+											value="Listar/Alterar" /></li>
+								</ul></li>
+							<li><a href="javascript:;" data-toggle="collapse"
+								data-target="#predioDown"><i class="fa fa-user"></i>
+									Predio <i class="fa fa-fw fa-caret-down"></i></a>
+								<ul id="predioDown" class="collapse">
+									<li><h:commandLink action="#{predioMB.abrirCadastro()}"
+											value="Cadastrar" /></li>
+									<li><h:commandLink action="#{predioMB.abrirListagem()}"
+											value="Listar/Alterar" /></li>
+								</ul></li>
+								<li><a href="javascript:;" data-toggle="collapse"
+								data-target="#comodoDown"><i class="fa fa-user"></i>
+									Comodo <i class="fa fa-fw fa-caret-down"></i></a>
+								<ul id="comodoDown" class="collapse">
+									<li><h:commandLink action="#{comodoMB.abrirCadastro()}"
+											value="Cadastrar" /></li>
+									<li><h:commandLink action="#{comodoMB.abrirListagem()}"
+											value="Listar/Alterar" /></li>
+								</ul></li>
+								<li><a href="javascript:;" data-toggle="collapse"
+								data-target="#permissaoDown"><i class="fa fa-user"></i>
+									Permissão <i class="fa fa-fw fa-caret-down"></i></a>
+								<ul id="permissaoDown" class="collapse">
+									<li><h:commandLink action="#{permissaoMB.abrirCadastro()}"
+											value="Cadastrar" /></li>
+									<li><h:commandLink action="#{permissaoMB.abrirListagem()}"
+											value="Listar/Alterar" /></li>
+								</ul></li>
+								<li><a href="javascript:;" data-toggle="collapse"
+								data-target="#dispositivoDown"><i class="fa fa-user"></i>
+									Dispositivo <i class="fa fa-fw fa-caret-down"></i></a>
+								<ul id="dispositivoDown" class="collapse">
+									<li><h:commandLink action="#{dispositivoMB.abrirCadastro()}"
+											value="Cadastrar" /></li>
+									<li><h:commandLink action="#{dispositivoMB.abrirListagem()}"
+											value="Listar/Alterar" /></li>
+								</ul></li>
+
+						</ul>
+					</h:form>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+
+			<div id="page-wrapper">
+
+				<div class="container-fluid">
+
+					<!-- Page Heading -->
+					<div class="row">
+						<div class="col-lg-12">
+							<h3 class="page-header">
+								<ui:insert name="titulo">Titulo</ui:insert>
+							</h3>
+
+							<div id="content">
+								<ui:insert name="conteudo">Conteúdo</ui:insert>
+							</div>
+						</div>
+					</div>
+					<!-- /.row -->
+
+				</div>
+				<!-- /.container-fluid -->
+
+			</div>
+			<!-- /#page-wrapper -->
+
 		</div>
+		<!-- /#wrapper -->
+
+		<!-- jQuery -->		
+		<h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+		<h:outputScript library="primefaces" name="jquery/jquery-plugins.js" target="head" />
+		<!-- Bootstrap Core JavaScript -->
+		<script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script>
+
 	</h:body>
+</ui:composition>
 </html>
+
