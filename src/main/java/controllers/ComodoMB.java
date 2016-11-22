@@ -41,7 +41,7 @@ public class ComodoMB extends AbstractCrudMB<Comodo> {
 		this.comodo = comodo;
 	}
 	
-	public List<Comodo> getListaComodo(){
+	public List<Comodo> getListaComodos(){
 		setListaComodos(comodoDAO.listar());
 		return listaComodos;
 	}
@@ -59,13 +59,6 @@ public class ComodoMB extends AbstractCrudMB<Comodo> {
 			comodoDAO.atualizar(comodo);
 		}
 		resetMB();
-		//Comodo c = comodoDAO.buscarComodoId(comodo.getId());
-		/*if (c == null){
-			comodoDAO.salvar(comodo);
-		}
-		else {
-			comodoDAO.atualizar(comodo);
-		}*/
 		return LIST_PAGE;
 	}
 
@@ -93,6 +86,7 @@ public class ComodoMB extends AbstractCrudMB<Comodo> {
 	@Override
 	public String abrirListagem() {
 		resetMB();
+		setListaComodos(comodoDAO.listar());
 		return LIST_PAGE;
 	}
 

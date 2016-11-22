@@ -28,6 +28,16 @@ public class DispositivoMB extends AbstractCrudMB<Dispositivo> {
 	@Inject
 	private DispositivoDAO dispositivoDao;
 	
+	private List<Dispositivo> listaDisp;
+	
+	public List<Dispositivo> getListaDisp() {
+		return listaDisp;
+	}
+
+	public void setListaDisp(List<Dispositivo> listaDisp) {
+		this.listaDisp = listaDisp;
+	}
+
 	public DispositivoMB() {
 		dispositivo = new Dispositivo();
 	}
@@ -35,6 +45,8 @@ public class DispositivoMB extends AbstractCrudMB<Dispositivo> {
 	public Dispositivo getDispositivo() {
 		return dispositivo;
 	}
+	
+
 	
 	public void setDispositivo(Dispositivo dispositivo){
 		this.dispositivo = dispositivo;
@@ -55,6 +67,8 @@ public class DispositivoMB extends AbstractCrudMB<Dispositivo> {
 	@Override
 	public String abrirListagem() {
 		resetMB();
+		setListaDisp(dispositivoDao.listar());
+	//	setListaDispositivos(dispositivoDao.listar());
 		return LIST_PAGE;
 	}
 

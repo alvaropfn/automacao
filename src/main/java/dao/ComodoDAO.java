@@ -31,7 +31,7 @@ public class ComodoDAO {
 	
 	@SuppressWarnings("unchecked")
 	public List<Comodo> listar() {
-		String qs = "select p from Comodo c";
+		String qs = "select c from Comodo c";
 		Query q = em.createQuery(qs);
 		return (List<Comodo>) q.getResultList();
 	}

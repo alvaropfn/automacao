@@ -31,7 +31,7 @@ public class DispositivoDAO {
 	
 	@SuppressWarnings("unchecked")
 	public List<Dispositivo> listar() {
-		String qs = "select p from Dispositivo p";
+		String qs = "select d from Dispositivo d";
 		Query q = em.createQuery(qs);
 		return (List<Dispositivo>) q.getResultList();
 	}

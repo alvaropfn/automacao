@@ -36,22 +36,6 @@ public class PredioMB extends AbstractCrudMB<Predio>{
 		listaPredios = new ArrayList<Predio>(); 
 	}
 	
-	public Predio getPredio() {
-		return predio;
-	}
-	
-	public void setPredio(Predio predio){
-		this.predio = predio;
-	}
-	
-	public List<Predio> getListaPredio(){
-		return listaPredios;
-	}
-
-	public void setListaPredios(List<Predio> listaPredios){
-		this.listaPredios = listaPredios;
-	}
-	
 	public List<SelectItem> selectItems(){
 		List<SelectItem> itemsPredio = new ArrayList<>();
 		List<Predio> predios = predioDAO.findAll();
@@ -95,6 +79,7 @@ public class PredioMB extends AbstractCrudMB<Predio>{
 	@Override
 	public String abrirListagem() {
 		resetMB();
+		setListaPredios(predioDAO.listar());
 		return LIST_PAGE;
 	}
 
@@ -132,7 +117,22 @@ public class PredioMB extends AbstractCrudMB<Predio>{
 		setObj(new Predio());
 		getObj().setComodos(new ArrayList<Comodo>());
 		
+	}	
+	
+	public Predio getPredio() {
+		return predio;
 	}
 	
+	public void setPredio(Predio predio){
+		this.predio = predio;
+	}
+	
+	public List<Predio> getListaPredios(){
+		return listaPredios;
+	}
+
+	public void setListaPredios(List<Predio> listaPredios){
+		this.listaPredios = listaPredios;
+	}
 	
 }
