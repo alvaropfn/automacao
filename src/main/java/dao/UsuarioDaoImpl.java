@@ -13,6 +13,7 @@ import dominio.Usuario;
 
 
 
+@SuppressWarnings("unused")
 @Stateless
 public class UsuarioDaoImpl{
 	@PersistenceContext

@@ -32,7 +32,7 @@ public class PermissaoDAO {
 		em.remove(p);
 	}
 	
-	@SuppressWarnings("uncheked")
+	@SuppressWarnings("unchecked")
 	public List<Permissao> listar()
 	{
 		String qs = "SELECT p FROM Permissao P";
