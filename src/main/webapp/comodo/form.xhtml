@@ -17,16 +17,16 @@
 					<form role="form">
 						<div class="form-group">						
 							<label>Nome</label>
-							<p:inputText value="#{comodoMB.comodo.nome}" required="true"
+							<p:inputText value="#{comodoMB.comodo.nome}" required="true" 
 								requiredMessage="Nome Obrigatorio" styleClass="form-control"></p:inputText>
 						</div>	
 						<div class="form-group">
 							<label>Prédios</label>
 							<div class="form-group">
 								<p:selectOneMenu value="#{comodoMB.comodo.predio}"
-									required="true" requiredMessage="Prédio Obrigatório"
-									converter="#{omnifaces.SelectItemsIndexConverter}">
-									<f:selectItems value="#{predioMB.selectItems()}"></f:selectItems>
+									requiredMessage="Prédio Obrigatório"
+									converter="omnifaces.SelectItemsConverter">
+										<f:selectItems value="#{predioMB.selectItems()}"></f:selectItems>
 								</p:selectOneMenu>
 							</div>
 

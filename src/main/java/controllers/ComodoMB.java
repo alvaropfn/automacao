@@ -10,8 +10,8 @@ import javax.inject.Inject;
 
 import controllers.primitive.AbstractCrudMB;
 import dao.ComodoDAO;
-import dao.DispositivoDAO;
 import dominio.Comodo;
+import dominio.Predio;
 
 @ManagedBean
 @SessionScoped
@@ -30,6 +30,7 @@ public class ComodoMB extends AbstractCrudMB<Comodo> {
 	
 	public ComodoMB() {
 		comodo = new Comodo();
+		comodo.setPredio(new Predio());
 		listaComodos = new ArrayList<Comodo>(); 
 	}
 	
