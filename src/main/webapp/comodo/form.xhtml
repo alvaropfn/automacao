@@ -5,9 +5,15 @@
 	xmlns:p="http://primefaces.org/ui" template="/include/template.xhtml">
 
 	<ui:define name="titulo">
+<<<<<<< HEAD
 		<title>Cômodos</title>
 		<h:messages />
 		Cadastrar Cômodos
+=======
+		<title>Login</title>
+		<h:messages />
+		Cadastrar Cômodo
+>>>>>>> 11250ab3e15d852949690d44a2d101dd9ac8a336
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -17,6 +23,7 @@
 					<form role="form">
 						<div class="form-group">						
 							<label>Nome</label>
+<<<<<<< HEAD
 							<p:inputText value="#{comodoMB.comodo.nome}" required="true"
 								requiredMessage="Nome Obrigatorio" styleClass="form-control"></p:inputText>
 						</div>	
@@ -32,6 +39,12 @@
 
 						</div>
 						<p:commandButton action="#{comodoMB.cadastrar}"
+=======
+							<p:inputText value="#{grupoMB.grupo.nome}" required="true"
+								requiredMessage="Nome Obrigatorio" styleClass="form-control"></p:inputText>
+						</div>	
+						<p:commandButton action="#{grupoMB.cadastrar}"
+>>>>>>> 11250ab3e15d852949690d44a2d101dd9ac8a336
 							styleClass="btn btn-default" value="Cadastrar"></p:commandButton>						
 					</form>
 

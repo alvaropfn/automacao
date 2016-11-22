@@ -19,6 +19,14 @@
 		    <artifactId>primefaces</artifactId>
 		    <version>6.0</version>
 		</dependency>
+<<<<<<< HEAD
+=======
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.4.4</version>
+ 		 </dependency>
+>>>>>>> 11250ab3e15d852949690d44a2d101dd9ac8a336
 	</dependencies>
   	<build>
     	<finalName>automacao</finalName>

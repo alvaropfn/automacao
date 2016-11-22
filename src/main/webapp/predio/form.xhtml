@@ -7,7 +7,11 @@
 	<ui:define name="titulo">
 		<title>Login</title>
 		<h:messages />
+<<<<<<< HEAD
 		Cadastrar Prédio
+=======
+		Cadastrar Grupo
+>>>>>>> 11250ab3e15d852949690d44a2d101dd9ac8a336
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -17,6 +21,7 @@
 					<form role="form">
 						<div class="form-group">						
 							<label>Nome</label>
+<<<<<<< HEAD
 							<p:inputText value="#{predioMB.predio.nome}" required="true"
 								requiredMessage="Nome Obrigatorio" styleClass="form-control"></p:inputText>
 						</div>	
@@ -29,6 +34,13 @@
 							styleClass="btn btn-default" value="Cadastrar"></p:commandButton>
 						<p:commandButton action="#{predioMB.cancelar()}"
 							styleClass="btn btn-default" value="Cancelar"></p:commandButton>						
+=======
+							<p:inputText value="#{grupoMB.grupo.nome}" required="true"
+								requiredMessage="Nome Obrigatorio" styleClass="form-control"></p:inputText>
+						</div>	
+						<p:commandButton action="#{grupoMB.cadastrar}"
+							styleClass="btn btn-default" value="Cadastrar"></p:commandButton>						
+>>>>>>> 11250ab3e15d852949690d44a2d101dd9ac8a336
 					</form>
 
 				</div>

@@ -12,7 +12,10 @@ import controllers.primitive.AbstractCrudMB;
 import dao.GrupoDAO;
 import dominio.Dispositivo;
 import dominio.Grupo;
+<<<<<<< HEAD
 import dominio.Permissao;
+=======
+>>>>>>> 11250ab3e15d852949690d44a2d101dd9ac8a336
 import dominio.Usuario;
 
 @ManagedBean
@@ -74,6 +77,7 @@ public class GrupoMB extends AbstractCrudMB<Grupo>{
 
 	@Override
 	public String cadastrar() {	
+<<<<<<< HEAD
 		if(grupo.getId() == 0){
 			grupoDAO.salvar(grupo);
 		}
@@ -83,6 +87,9 @@ public class GrupoMB extends AbstractCrudMB<Grupo>{
 		
 		
 		/*Grupo g = grupoDAO.buscarGrupoNome(grupo.getNome());
+=======
+		Grupo g = grupoDAO.buscarGrupoNome(grupo.getNome());
+>>>>>>> 11250ab3e15d852949690d44a2d101dd9ac8a336
 		
 		if (g == null){
 			System.out.println("g é nulo");
@@ -93,7 +100,11 @@ public class GrupoMB extends AbstractCrudMB<Grupo>{
 			//System.out.println("g não é nulo");
 			grupoDAO.atualizar(grupo);
 		}
+<<<<<<< HEAD
 		grupo = new Grupo();*/
+=======
+		grupo = new Grupo();
+>>>>>>> 11250ab3e15d852949690d44a2d101dd9ac8a336
 		
 		// TODO Auto-generated method stub
 		return abrirListagem();
@@ -107,19 +118,29 @@ public class GrupoMB extends AbstractCrudMB<Grupo>{
 
 	@Override
 	public String deletar(int id) {
+<<<<<<< HEAD
 		Grupo g = grupoDAO.buscarGrupoId(id);
 		if (g != null){
 			grupoDAO.remover(g);
 		}
 		return LIST_PAGE;
+=======
+		// TODO Auto-generated method stub
+		return null;
+>>>>>>> 11250ab3e15d852949690d44a2d101dd9ac8a336
 	}
 
 	@Override
 	public String editar(int id) {
+<<<<<<< HEAD
 		if(id != 0) {
 			grupoDAO.atualizar(grupo);
 		}
 		return abrirListagem();
+=======
+		// TODO Auto-generated method stub
+		return null;
+>>>>>>> 11250ab3e15d852949690d44a2d101dd9ac8a336
 	}
 
 	@Override
@@ -130,7 +151,12 @@ public class GrupoMB extends AbstractCrudMB<Grupo>{
 
 	@Override
 	public void resetMB() {
+<<<<<<< HEAD
 		setObj(new Grupo());		
+=======
+		// TODO Auto-generated method stub
+		
+>>>>>>> 11250ab3e15d852949690d44a2d101dd9ac8a336
 	}
 	
 	public List<SelectItem> selectItems() {

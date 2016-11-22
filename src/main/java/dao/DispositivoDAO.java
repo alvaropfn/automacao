@@ -31,7 +31,11 @@ public class DispositivoDAO {
 	
 	@SuppressWarnings("unchecked")
 	public List<Dispositivo> listar() {
+<<<<<<< HEAD
 		String qs = "select d from Dispositivo d";
+=======
+		String qs = "select p from Dispositivo p";
+>>>>>>> 11250ab3e15d852949690d44a2d101dd9ac8a336
 		Query q = em.createQuery(qs);
 		return (List<Dispositivo>) q.getResultList();
 	}
@@ -46,6 +50,7 @@ public class DispositivoDAO {
 			return null;
 		}
 	}
+<<<<<<< HEAD
 	
 	public Dispositivo buscarDispositivoId(int id) {
 		String qs = "select p from Dispositivo p where p.id = :id";
@@ -57,4 +62,6 @@ public class DispositivoDAO {
 			return null;
 		}
 	}
+=======
+>>>>>>> 11250ab3e15d852949690d44a2d101dd9ac8a336
 }

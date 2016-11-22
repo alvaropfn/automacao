@@ -15,16 +15,25 @@
 		
 		<h:form id="form">			
 		
+<<<<<<< HEAD
 			<p:dataTable var="dispositivo" value="#{dispositivoMB.listaDisp}">
 				<p:column headerText="Id">
 					<h:outputText value="#{dispositivo.id}" />
+=======
+			<p:dataTable var="dispositivo" value="#{dispositivoMB.list}">
+				<p:column headerText="Id">
+					<h:outputText value="#{dispositivo.idDispositivo}" />
+>>>>>>> 11250ab3e15d852949690d44a2d101dd9ac8a336
 				</p:column>
 				<p:column headerText="Nome do Dispositivo">
 					<h:outputText value="#{dispositivo.nome}" />
 				</p:column>
+<<<<<<< HEAD
 				<p:column headerText="Prédio">
 					<h:outputText value="#{dispositivo.comodo.predio.nome}" />
 				</p:column>	
+=======
+>>>>>>> 11250ab3e15d852949690d44a2d101dd9ac8a336
 				<p:column headerText="Comodo">
 					<h:outputText value="#{dispositivo.comodo.nome}" />
 				</p:column>			

@@ -5,7 +5,11 @@
 	xmlns:p="http://primefaces.org/ui" template="/include/template.xhtml">
 
 	<ui:define name="titulo">
+<<<<<<< HEAD
 		<title>Dispositivo</title>
+=======
+		<title>Login</title>
+>>>>>>> 11250ab3e15d852949690d44a2d101dd9ac8a336
 		<h:messages />
 		Cadastrar Dispositivo
 	</ui:define>
@@ -14,6 +18,7 @@
 		<h:form>
 			<div class="row">
 				<div class="col-md-6">
+<<<<<<< HEAD
 					<form role="form">
 						<div class="form-group">
 							<label>Prédio</label>
@@ -32,6 +37,24 @@
 						<p:commandButton action="#{dispositivoMB.cadastrar}"
 							styleClass="btn btn-default" value="Cadastrar"></p:commandButton>
 						<p:commandButton action="#{dispositivoMB.cancelar}"
+=======
+					<form role="form">					
+						<div class="form-group">
+							<label>Nome</label>
+							<p:inputText value="#{grupoMB.grupo.nome}" required="true"
+								requiredMessage="Nome Obrigatorio" styleClass="form-control"></p:inputText>
+						</div>
+						<div class="form-group">
+							<label>Nome</label>
+							<p:selectOneMenu value="#{grupoMB.grupo.nome}" required="true" 
+								requiredMessage="Nome Obrigatorio" styleClass="form-control" converter="#{omnifaces.omnifaces.SelectItemsIndexConverter}">
+								<f:selectItems value="#{comodoMB.selectItems()}"></f:selectItems>
+								</p:selectOneMenu>
+						</div>
+						<p:commandButton action="#{grupoMB.cadastrar}"
+							styleClass="btn btn-default" value="Cadastrar"></p:commandButton>
+						<p:commandButton action="#{grupoMB.cancelar}"
+>>>>>>> 11250ab3e15d852949690d44a2d101dd9ac8a336
 							styleClass="btn btn-default" value="Cancelar"></p:commandButton>
 					</form>
 

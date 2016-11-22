@@ -135,4 +135,67 @@ public class PredioMB extends AbstractCrudMB<Predio>{
 		this.listaPredios = listaPredios;
 	}
 	
+<<<<<<< HEAD
+=======
+	@Override
+	public String cadastrar() {
+		Predio p = predioDAO.buscarPredioNome(predio.getNome());
+		if (p == null){
+			predioDAO.salvar(predio);
+		}
+		else {
+			predioDAO.atualizar(predio);
+		}
+		return "urlPagina";
+	}
+	@Override
+	public String abrirCadastro() {
+		// TODO Auto-generated method stub
+		return FORM_PAGE;
+	}
+
+	@Override
+	public String abrirEditar(int id) {
+		// TODO Auto-generated method stub
+		return LIST_PAGE;
+	}
+
+	@Override
+	public String abrirListagem() {
+		// TODO Auto-generated method stub
+		return LIST_PAGE;
+	}
+
+	@Override
+	public String cancelar() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String deletar(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String editar(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean validaObj() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void resetMB() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+>>>>>>> 11250ab3e15d852949690d44a2d101dd9ac8a336
 }

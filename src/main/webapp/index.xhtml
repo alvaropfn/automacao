@@ -7,16 +7,36 @@
 	
 	<ui:define name="titulo">
 		<title>Login</title>
+<<<<<<< HEAD
 		
+=======
+		<h1>SistemaAutomação</h1>
+>>>>>>> 11250ab3e15d852949690d44a2d101dd9ac8a336
 	</ui:define>
 
 	<ui:define name="conteudo">
 		<h:body>
 			<h:form>
+<<<<<<< HEAD
 				<h1>Bem-vindo!</h1>
 				
 				<h:messages />
 		
+=======
+				<h3>Bem-vindo!</h3>
+				<div class="row">
+					<div class="col-xl-6">
+						<h:outputText value="#{indexMB.humidity}" />
+					</div>
+					<div class="col-xl-6">
+						<h:outputText value="#{indexMB.temperature}" />	
+					</div>
+				</div>
+				
+				<h:commandButton action="#{indexMB.ligarDispositivo()}" value="Ligar disposivo" />
+				<h:commandButton action="#{indexMB.desligarDispositivo()}" value="Desliga dispositivo" />
+				<h:messages />
+>>>>>>> 11250ab3e15d852949690d44a2d101dd9ac8a336
 			</h:form>
 		</h:body>
 	</ui:define>

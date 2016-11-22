@@ -96,6 +96,7 @@ public class ComodoMB extends AbstractCrudMB<Comodo> {
 		return null;
 	}
 
+<<<<<<< HEAD
 	@Override
 	public String deletar(int id) {
 		Comodo c = comodoDAO.buscarComodoId(id);
@@ -119,6 +120,51 @@ public class ComodoMB extends AbstractCrudMB<Comodo> {
 		else {
 			return LIST_PAGE;
 		}
+=======
+	public List<SelectItem> selectItems(){
+		List<SelectItem> itemsComodo = new ArrayList<>();
+		List<Comodo> comodos =	comodoDAO.listar();
+		
+		comodos.forEach(comodo -> itemsComodo.add(new SelectItem(comodo,comodo.getNome())));
+		
+		return itemsComodo;
+	}
+
+	@Override
+	public String abrirCadastro() {
+		resetMB();
+		return FORM_PAGE;
+	}
+
+	@Override
+	public String abrirEditar(int id) {
+		resetMB();
+		return LIST_PAGE;
+	}
+
+	@Override
+	public String abrirListagem() {
+		resetMB();
+		return LIST_PAGE;
+	}
+
+	@Override
+	public String cancelar() {
+		resetMB();
+		return null;
+	}
+
+	@Override
+	public String deletar(int id) {
+		resetMB();
+		return null;
+	}
+
+	@Override
+	public String editar(int id) {
+		resetMB();
+		return null;
+>>>>>>> 11250ab3e15d852949690d44a2d101dd9ac8a336
 	}
 
 	@Override
