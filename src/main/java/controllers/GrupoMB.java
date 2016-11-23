@@ -3,6 +3,7 @@ package controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
@@ -14,6 +15,7 @@ import dominio.Dispositivo;
 import dominio.Grupo;
 import dominio.Permissao;
 import dominio.Usuario;
+import service.GrupoService;
 
 @ManagedBean
 @SessionScoped
@@ -24,8 +26,8 @@ public class GrupoMB extends AbstractCrudMB<Grupo>{
 	
 	private Grupo grupo;
 	
-	@Inject
-	private GrupoDAO grupoDAO;
+	@EJB
+	private GrupoService service;
 	
 	private List<Grupo> listaGrupos;
 	
@@ -68,34 +70,13 @@ public class GrupoMB extends AbstractCrudMB<Grupo>{
 	@Override
 	public String abrirListagem() {
 		resetMB();
-		setList(grupoDAO.listar());
+		setList(service.listar());
 		return LIST_PAGE;
 	}
 
 	@Override
 	public String cadastrar() {	
-		if(grupo.getId() == 0){
-			grupoDAO.salvar(grupo);
-		}
-		else {
-			grupoDAO.atualizar(grupo);
-		}
-		
-		
-		/*Grupo g = grupoDAO.buscarGrupoNome(grupo.getNome());
-		
-		if (g == null){
-			System.out.println("g é nulo");
-			grupoDAO.salvar(grupo);
-			System.out.println("g deveria ser salvo");
-		}
-		else {
-			//System.out.println("g não é nulo");
-			grupoDAO.atualizar(grupo);
-		}
-		grupo = new Grupo();*/
-		
-		// TODO Auto-generated method stub
+		service.salvar(grupo);
 		return abrirListagem();
 	}
 
@@ -107,18 +88,13 @@ public class GrupoMB extends AbstractCrudMB<Grupo>{
 
 	@Override
 	public String deletar(int id) {
-		Grupo g = grupoDAO.buscarGrupoId(id);
-		if (g != null){
-			grupoDAO.remover(g);
-		}
+		service.deletar(id);
 		return LIST_PAGE;
 	}
 
 	@Override
 	public String editar(int id) {
-		if(id != 0) {
-			grupoDAO.atualizar(grupo);
-		}
+		service.salvar(grupo);		
 		return abrirListagem();
 	}
 
@@ -135,7 +111,7 @@ public class GrupoMB extends AbstractCrudMB<Grupo>{
 	
 	public List<SelectItem> selectItems() {
 		List<SelectItem> itemsgrupos = new ArrayList<>();
-		List<Grupo> grupos = grupoDAO.listar();
+		List<Grupo> grupos = service.listar();
 
 		grupos.forEach(grupo -> itemsgrupos.add(new SelectItem(grupo, grupo.getNome())));
 

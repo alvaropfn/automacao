@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
 
 import controllers.primitive.AbstractCrudMB;
@@ -13,6 +14,7 @@ import dominio.Permissao;
 import dominio.Usuario;
 
 @ManagedBean
+@RequestScoped
 public class PermissaoMB extends AbstractCrudMB<Permissao> {
 
 	public static final String FORM_PAGE = "/permissao/form.xhtml";

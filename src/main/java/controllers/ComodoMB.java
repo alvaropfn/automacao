@@ -3,18 +3,18 @@ package controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.model.SelectItem;
-import javax.inject.Inject;
 
 import controllers.primitive.AbstractCrudMB;
-import dao.ComodoDAO;
 import dominio.Comodo;
 import dominio.Predio;
+import service.ComodoService;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class ComodoMB extends AbstractCrudMB<Comodo> {
 	
 	public static final String FORM_PAGE = "/comodo/form.xhtml";
@@ -22,8 +22,9 @@ public class ComodoMB extends AbstractCrudMB<Comodo> {
 	
 	private Comodo comodo;
 	
-	@Inject
-	private ComodoDAO comodoDAO;
+	@EJB
+	private ComodoService service;
+	
 	
 	private List<Comodo> listaComodos;
 	
@@ -43,7 +44,7 @@ public class ComodoMB extends AbstractCrudMB<Comodo> {
 	}
 	
 	public List<Comodo> getListaComodos(){
-		setListaComodos(comodoDAO.listar());
+		setListaComodos(service.listar());
 		return listaComodos;
 	}
 
@@ -53,19 +54,14 @@ public class ComodoMB extends AbstractCrudMB<Comodo> {
 	
 	@Override
 	public String cadastrar() {
-		if (comodo.getId() == 0){
-			comodoDAO.salvar(comodo);
-		}
-		else {
-			comodoDAO.atualizar(comodo);
-		}
+		service.salvar(comodo);
 		resetMB();
 		return LIST_PAGE;
 	}
 
 	public List<SelectItem> selectItems(){
 		List<SelectItem> itemsComodo = new ArrayList<>();
-		List<Comodo> comodos =	comodoDAO.listar();
+		List<Comodo> comodos =	service.listar();
 		
 		comodos.forEach(comodo -> itemsComodo.add(new SelectItem(comodo,comodo.getNome())));
 		
@@ -87,7 +83,7 @@ public class ComodoMB extends AbstractCrudMB<Comodo> {
 	@Override
 	public String abrirListagem() {
 		resetMB();
-		setListaComodos(comodoDAO.listar());
+		setListaComodos(service.listar());
 		return LIST_PAGE;
 	}
 
@@ -99,27 +95,15 @@ public class ComodoMB extends AbstractCrudMB<Comodo> {
 
 	@Override
 	public String deletar(int id) {
-		Comodo c = comodoDAO.buscarComodoId(id);
-		if(c!=null){
-			comodoDAO.remover(c);
-		}
-		
+		service.deletar(id);
 		return LIST_PAGE;
 	}
 
 	///CADASTRAR JÁ FAZ EDIÇÃO, MAS ARRUMEI O MÉTODO
 	@Override
-	public String editar(int id) {
-		if (id != 0){
-			Comodo c = comodoDAO.buscarComodoId(id);
-			if (c!=null){
-				comodoDAO.atualizar(c);
-			}
-			return LIST_PAGE;	
-		}
-		else {
-			return LIST_PAGE;
-		}
+	public String editar(int id) {		
+		service.salvar(service.buscaPorId(id));		
+		return LIST_PAGE;		
 	}
 
 	@Override

@@ -14,15 +14,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import rest.dominio.Humidity;
 import rest.dominio.Temperature;
 
-public class EspClientImpl {
+public class EspClientWS {
 
 	public Humidity getHumidity() {
 
-		Client client = ClientBuilder.newBuilder().build();
-		WebTarget target = client.target("http://192.168.43.48/humidity");
-		Response response = target.request().get();
-		String value = response.readEntity(String.class);
-		response.close();	
+		String uri = "http://192.168.43.48/humidity";
+		
+		String value = execute(uri);
+		
 		ObjectMapper objectMapper=  new ObjectMapper();
 		Humidity humidity = null;
 		try {
@@ -39,16 +38,16 @@ public class EspClientImpl {
 
 	public Temperature getTemperature() {
 
-		Client client = ClientBuilder.newBuilder().build();
-		WebTarget target = client.target("http://192.168.43.48/temperature");
-		Response response = target.request().get();
-		String value = response.readEntity(String.class);
-		response.close();
+		
+		String uri = "http://192.168.43.48/temperature";
+		
+		String value = execute(uri);
+		
 		ObjectMapper objectMapper=  new ObjectMapper();
 		Temperature temperature = null;
+		
 		try {
-			temperature = objectMapper.readValue(value, Temperature.class);
-			System.out.println(temperature.getTemperature());
+			temperature = objectMapper.readValue(value, Temperature.class);			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -58,22 +57,24 @@ public class EspClientImpl {
 	}
 
 	public void ligarLed() {
-
-		Client client = ClientBuilder.newBuilder().build();
-		WebTarget target = client.target("http://192.168.43.48/led?params=0");
-		Response response = target.request().get();
-		String value = response.readEntity(String.class);
-		response.close();
+		String uri = "http://192.168.43.48/led?params=0";
+		execute(uri);	
 
 	}
 
-	public void desligarLed() {
-
+	public void desligarLed() {		
+		String uri = "http://192.168.43.48/led?params=1";		
+		execute(uri);
+		
+	}
+	
+	private String execute(String uri) {
 		Client client = ClientBuilder.newBuilder().build();
-		WebTarget target = client.target("http://192.168.43.48/led?params=1");
+		WebTarget target = client.target(uri);
 		Response response = target.request().get();
 		String value = response.readEntity(String.class);
 		response.close();
+		return value;
 	}
 
 }

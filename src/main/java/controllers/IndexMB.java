@@ -3,12 +3,12 @@ package controllers;
 import javax.faces.bean.ManagedBean;
 
 import controllers.primitive.AbstractMB;
-import rest.EspClientImpl;
+import rest.EspClientWS;
 
 @ManagedBean
 public class IndexMB extends AbstractMB<Object> {
 
-	private EspClientImpl client;
+	private EspClientWS client;
 
 	public float getHumidity() {
 		resetMB();
@@ -32,7 +32,7 @@ public class IndexMB extends AbstractMB<Object> {
 
 	@Override
 	public void resetMB() {
-		client = new EspClientImpl();
+		client = new EspClientWS();
 	}
 
 	@Override

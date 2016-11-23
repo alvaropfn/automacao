@@ -3,7 +3,9 @@ package controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
@@ -15,9 +17,10 @@ import dominio.Dispositivo;
 import dominio.Permissao;
 import dominio.Predio;
 import dominio.Usuario;
+import service.PredioService;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class PredioMB extends AbstractCrudMB<Predio>{
 
 	public static final String FORM_PAGE = "/predio/form.xhtml";
@@ -25,8 +28,8 @@ public class PredioMB extends AbstractCrudMB<Predio>{
 	
 	private Predio predio;
 	
-	@Inject
-	private PredioDAO predioDAO;
+	@EJB
+	private PredioService service;
 	
 	private List<Predio> listaPredios;
 	
@@ -38,7 +41,7 @@ public class PredioMB extends AbstractCrudMB<Predio>{
 	
 	public List<SelectItem> selectItems(){
 		List<SelectItem> itemsPredio = new ArrayList<>();
-		List<Predio> predios = predioDAO.findAll();
+		List<Predio> predios = service.listar();
 		
 		predios.forEach(predio -> itemsPredio.add(new SelectItem(predio,predio.getNome())));
 		
@@ -46,21 +49,8 @@ public class PredioMB extends AbstractCrudMB<Predio>{
 	}
 	
 	@Override
-	public String cadastrar() {
-		
-		if(predio.getId() == 0){
-			predioDAO.salvar(predio);
-		}
-		else {
-			predioDAO.atualizar(predio);
-		}
-		/*Predio p = predioDAO.buscarPredioNome(predio.getNome());
-		if (p == null){
-			predioDAO.salvar(predio);
-		}
-		else {
-			predioDAO.atualizar(predio);
-		}*/
+	public String cadastrar() {		
+		service.salvar(predio);
 		return abrirListagem();
 	}
 	
@@ -79,7 +69,7 @@ public class PredioMB extends AbstractCrudMB<Predio>{
 	@Override
 	public String abrirListagem() {
 		resetMB();
-		setListaPredios(predioDAO.listar());
+		setListaPredios(service.listar());
 		return LIST_PAGE;
 	}
 
@@ -91,25 +81,19 @@ public class PredioMB extends AbstractCrudMB<Predio>{
 
 	@Override
 	public String deletar(int id) {
-		Predio p = predioDAO.buscarPredioId(id);
-		if(p !=null){
-			predioDAO.remover(p);
-		}
+		
 		return LIST_PAGE;
 	}
 
 	@Override
 	public String editar(int id) {
-		if(id != 0) {
-			predioDAO.atualizar(predio);
-		}
+		service.salvar(predio);
 		return abrirListagem();
 	}
 
 	@Override
-	public boolean validaObj() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean validaObj() {		
+		return true;
 	}
 
 	@Override
